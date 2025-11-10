@@ -4,7 +4,7 @@ Analyze semantic similarity between lyrics using multilingual text understanding
 
 ## Endpoint
 ```
-POST /v1/lyric_plagiarism/{model}
+POST /v1/model/{model}
 ```
 
 ## Parameters
@@ -13,7 +13,7 @@ POST /v1/lyric_plagiarism/{model}
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `model` | string | Yes | Model name for lyric analysis |
+| `model` | string | Yes | Model to use: 'lyric-plagiarism-semantic' |
 
 ### Request Body
 
@@ -24,7 +24,7 @@ POST /v1/lyric_plagiarism/{model}
 
 ## Request Example
 ```bash
-curl https://platform.mippia.com/v1/models/lyric-plagiarism-semantic \
+curl https://platform.mippia.com/v1/model/lyric-plagiarism-semantic \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \

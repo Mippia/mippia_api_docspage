@@ -4,10 +4,18 @@ Compare a track against a custom dataset to identify similar or potentially plag
 
 ## Endpoint
 ```
-POST /v1/plagiarism/check
+POST /v1/model/{models}
 ```
 
 ## Parameters
+
+### Path Parameters
+
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `model` | string | Yes | Model to use: 'music-plagiarism-check' |
+
 
 ### Request Body
 
@@ -18,7 +26,7 @@ POST /v1/plagiarism/check
 
 ## Request Example
 ```bash
-curl https://platform.mippia.com/v1/models/music-plagiarism-check \
+curl https://platform.mippia.com/v1/model/music-plagiarism-check \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \

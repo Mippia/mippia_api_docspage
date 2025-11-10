@@ -4,9 +4,9 @@ Create and manage custom datasets for plagiarism detection.
 
 ## Dataset Creation
 
-Create a new dataset with your music collection.
+Create a new dataset with your music collection. 
 ```
-POST /v1/dataset/create
+POST /v1/dataset
 ```
 
 :::{note}
@@ -17,7 +17,7 @@ This endpoint is currently in development. Contact [support@mippia.com](mailto:s
 
 Add tracks to an existing dataset.
 ```
-POST /v1/dataset/add
+POST /v1/dataset/{:dataset_id}/music
 ```
 
 :::{note}
