@@ -63,5 +63,5 @@ def make_request_with_backoff(url, max_retries=3):
 - Consider upgrading your tier if you regularly hit limits
 
 :::{note}
-Enterprise customers can request custom rate limits. Contact [enterprise@mippia.com](mailto:enterprise@mippia.com).
+Enterprise customers can request custom rate limits. Contact [mippia@mippia.com](mailto:mippia@mippia.com).
 :::

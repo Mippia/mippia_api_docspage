@@ -32,7 +32,7 @@ POST /v1/ai_detect/{model}
 
 ## Request Example
 ```bash
-curl https://platform.mippia.com/v1/ai_detect/standard \
+curl https://platform.mippia.com/v1/models/ai-detection-standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \

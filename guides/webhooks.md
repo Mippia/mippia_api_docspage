@@ -4,7 +4,7 @@ Configure webhooks to receive real-time notifications when processing completes.
 
 ## Setting Up Webhooks
 
-1. Log in to your dashboard at [mippia.com](https://mippia.com)
+1. Log in to your dashboard at [platform.mippia.com](https://platform.mippia.com)
 2. Navigate to **Settings** > **Webhooks**
 3. Click **Add Webhook**
 4. Enter your webhook endpoint URL

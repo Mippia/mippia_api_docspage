@@ -10,7 +10,7 @@ Sign up at [platform.mippia.com](https://platform.mippia.com) and generate your 
 
 Detect if a track is AI-generated:
 ```bash
-curl https://platform.mippia.com/v1/ai_detect/standard \
+curl https://platform.mippia.com/v1/models/ai-detection-standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \
