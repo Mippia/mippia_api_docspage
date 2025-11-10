@@ -28,6 +28,7 @@ myst_enable_extensions = [
     "tasklist",
 ]
 
+
 # 테마 옵션
 html_theme_options = {
     'navigation_depth': 4,
