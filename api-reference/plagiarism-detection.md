@@ -18,7 +18,7 @@ POST /v1/plagiarism/check
 
 ## Request Example
 ```bash
-curl https://api.mippia.com/v1/plagiarism/check \
+curl https://platform.mippia.com/v1/plagiarism/check \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \

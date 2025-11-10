@@ -4,13 +4,13 @@ Get started with MIPPIA API in minutes.
 
 ## Step 1: Get Your API Key
 
-Sign up at [mippia.com](https://mippia.com) and generate your API key from the dashboard.
+Sign up at [platform.mippia.com](https://platform.mippia.com) and generate your API key from the dashboard.
 
 ## Step 2: Make Your First Request
 
 Detect if a track is AI-generated:
 ```bash
-curl https://api.mippia.com/v1/ai_detect/standard \
+curl https://platform.mippia.com/v1/ai_detect/standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \

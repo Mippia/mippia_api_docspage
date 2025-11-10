@@ -24,7 +24,7 @@ POST /v1/lyric_plagiarism/{model}
 
 ## Request Example
 ```bash
-curl https://api.mippia.com/v1/lyric_plagiarism/semantic \
+curl https://platform.mippia.com/v1/lyric_plagiarism/semantic \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \
