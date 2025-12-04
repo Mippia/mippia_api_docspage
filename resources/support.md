@@ -1,13 +1,5 @@
 ## Contact
 
-### General Support
-
-Email: [mippia@mippia.com](mailto:mippia@mippia.com)
-
-Response time:
-- Free tier: 48-72 hours
-- Paid tiers: 24 hours
-- Enterprise: 4 hours (SLA guaranteed)
 
 ### Enterprise Sales
 

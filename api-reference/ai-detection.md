@@ -1,35 +1,38 @@
-# AI Music Detection
+# AI Music Detection 
 
-Detect AI-generated music using ensemble deep learning models.
+Detect AI-generated music.
 
-## Endpoint
 
-```
-POST /api/v1/ai-detection/{model_name}
-```
 
-## Parameters
+### Endpoint
+
+| Method | URI | Description |
+| :--- | :--- | :--- |
+| POST | `/api/v1/ai-detection/{model_name}` | |
 
 ### Path Parameters
 
 | Name | Type | Required | Description |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- |
 | `model_name` | string | Yes | Model to use: `lite`, `standard`, `pro` |
 
 ### Request Body
 
 | Field | Type | Required | Description |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- |
 | `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
+
+---
 
 ## Models
 
 | Model | Processing Time | Price | Description |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | `lite` | 10-20 seconds | $0.10 | Single model, fast detection |
 | `standard` | ~1 minute | $0.20 | model ensemble, balanced accuracy |
 | `pro` | ~1 minute | $0.50 | model ensemble with detailed classification |
 
+---
 ## Request Example
 
 ### cURL

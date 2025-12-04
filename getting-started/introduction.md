@@ -10,4 +10,4 @@ MIPPIA API provides music analysis capabilities for detecting AI-generated music
 
 - **AI Detection** – Identify whether a track was AI-generated or human-created
 - **Plagiarism Detection** – Compare tracks against custom datasets
-- **Lyric Plagiarism Analysis(Beta)** – Detect semantic similarity between lyrics in 100+ languages
+- **Lyric Plagiarism Analysis** – Detect semantic similarity between lyrics in 100+ languages

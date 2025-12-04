@@ -21,7 +21,7 @@ POST /api/v1/plagiarism/{model_name}
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
-| `dataset_id` | string | Yes | Dataset ID for comparison |
+| `dataset_id` | string | No | Dataset ID for comparison, 'default' is only option available for now. |
 
 ## Request Example
 
