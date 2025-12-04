@@ -30,12 +30,14 @@ jobs:
         run: pip install sphinx furo myst-parser sphinx-copybutton
 
       - name: Build docs
-        run: make html
+        run: |
+          cd docs
+          make html
 
       - name: Add CNAME
-        run: echo "docs.mippia.com" > _build/html/CNAME
+        run: echo "docs.mippia.com" > docs/_build/html/CNAME
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_build/html
+          path: docs/_build/html
