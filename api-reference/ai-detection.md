@@ -28,8 +28,8 @@ Detect AI-generated music.
 
 | Model | Processing Time | Price | Description |
 | :--- | :--- | :--- | :--- |
-| `lite` | 10-20 seconds | $0.10 | Single model, fast detection |
-| `standard` | ~1 minute | $0.20 | model ensemble, balanced accuracy |
+| `lite` | 30-40 seconds | $0.10 | Single model |
+| `standard` | 30~40 seconds | $0.20 | model ensemble, balanced accuracy |
 | `pro` | ~1 minute | $0.50 | model ensemble with detailed classification |
 
 ---
