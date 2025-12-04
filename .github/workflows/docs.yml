@@ -29,7 +29,6 @@ jobs:
       - name: Install dependencies
         run: pip install sphinx furo myst-parser sphinx-copybutton
       
-      # 👇 핵심: docs 디렉토리에서 빌드
       - name: Build docs
         working-directory: ./docs
         run: |
@@ -53,5 +52,5 @@ jobs:
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-      id: deployment
+        id: deployment
         uses: actions/deploy-pages@v4
