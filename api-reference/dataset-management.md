@@ -10,7 +10,7 @@ POST /v1/dataset
 ```
 
 :::{note}
-This endpoint is currently in development. Contact [support@mippia.com](mailto:support@mippia.com) for beta access.
+This endpoint is currently in development. Contact [mippia@mippia.com](mailto:support@mippia.com) for beta access.
 :::
 
 ## Dataset Add
@@ -21,14 +21,14 @@ POST /v1/dataset/{:dataset_id}/music
 ```
 
 :::{note}
-This endpoint is currently in development. Contact [support@mippia.com](mailto:support@mippia.com) for beta access.
+This endpoint is currently in development. Contact [mippia@mippia.com](mailto:support@mippia.com) for beta access.
 :::
 
 ## Pricing
 
 - **Free tier**: Up to 1,000 tracks per dataset
 - **Processing time**: ~2 minutes per track
-- **Enterprise**: For datasets exceeding 1,000 tracks, contact [enterprise@mippia.com](mailto:enterprise@mippia.com)
+- **Enterprise**: For datasets exceeding 1,000 tracks, contact [mippia@mippia.com](mailto:enterprise@mippia.com)
 
 ## Use Cases
 
