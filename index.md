@@ -18,6 +18,16 @@ getting-started/quick-start
 ```
 ```{toctree}
 :maxdepth: 2
+:caption: Guides
+:hidden:
+
+guides/webhooks
+guides/error-handling
+guides/best-practices
+```
+
+```{toctree}
+:maxdepth: 2
 :caption: API Reference
 :hidden:
 
@@ -26,15 +36,7 @@ api-reference/plagiarism-detection
 api-reference/lyric-plagiarism
 api-reference/dataset-management
 ```
-```{toctree}
-:maxdepth: 2
-:caption: Guides
-:hidden:
 
-guides/webhooks
-guides/error-handling
-guides/best-practices
-```
 ```{toctree}
 :maxdepth: 2
 :caption: Resources

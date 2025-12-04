@@ -27,8 +27,8 @@ POST /api/v1/ai-detection/{model_name}
 | Model | Processing Time | Price | Description |
 | --- | --- | --- | --- |
 | `lite` | 10-20 seconds | $0.10 | Single model, fast detection |
-| `standard` | ~1 minute | $0.20 | 4-model ensemble, balanced accuracy |
-| `pro` | ~1 minute | $0.50 | 7-model ensemble with detailed classification |
+| `standard` | ~1 minute | $0.20 | model ensemble, balanced accuracy |
+| `pro` | ~1 minute | $0.50 | model ensemble with detailed classification |
 
 ## Request Example
 
