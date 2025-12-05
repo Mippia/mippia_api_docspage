@@ -2,24 +2,22 @@
 
 Detect AI-generated music.
 
-
-
 ### Endpoint
 
 | Method | URI | Description |
 | :--- | :--- | :--- |
-| POST | `/api/v1/ai-detection/{model_name}` | |
+| POST | `/api/v1/ai-detection/{model_name}` | Detect AI-generated music |
 
 ### Path Parameters
 
 | Name | Type | Required | Description |
-| :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- |
 | `model_name` | string | Yes | Model to use: `lite`, `standard`, `pro` |
 
 ### Request Body
 
 | Field | Type | Required | Description |
-| :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- |
 | `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
 
 ---
@@ -28,11 +26,12 @@ Detect AI-generated music.
 
 | Model | Processing Time | Price | Description |
 | :--- | :--- | :--- | :--- |
-| `lite` | 30-40 seconds | $0.10 | Single model |
+| `lite` | 30-40 seconds | $0.10 | Single model, fast detection |
 | `standard` | 30~40 seconds | $0.20 | model ensemble, balanced accuracy |
 | `pro` | ~1 minute | $0.50 | model ensemble with detailed classification |
 
 ---
+
 ## Request Example
 
 ### cURL
@@ -239,7 +238,7 @@ Pro model includes additional classifiers for detailed analysis:
 ## Result Fields
 
 | Field | Type | Description |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `task_id` | string | Unique task identifier |
 | `status` | string | Task status: `pending`, `processing`, `success`, `failure` |
 | `model_type` | string | Model used for detection |
@@ -249,14 +248,14 @@ Pro model includes additional classifiers for detailed analysis:
 ### Model Result Fields
 
 | Field | Type | Description |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `model_N` | object | Individual model result (N = 0, 1, 2, ...) |
 | `model_N_config` | object | Model configuration and metadata |
 
 ### Model Config Fields
 
 | Field | Type | Description |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `analysis_focus` | string | What the model analyzes (see Analysis Focus below) |
 | `task` | string | Classification task type |
 | `num_classes` | integer | Number of output classes |
@@ -265,14 +264,14 @@ Pro model includes additional classifiers for detailed analysis:
 ### Analysis Focus
 
 | Focus | Description |
-| --- | --- |
+| :--- | :--- |
 | Waveform & Melody Pattern | Analyzes audio waveform characteristics and melodic patterns |
 | Mixing & Audio Effects | Analyzes mixing techniques and audio effect signatures |
 
 ### Analysis Result Fields
 
 | Field | Type | Description |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `segment_analysis` | object | Results from analyzing individual segments of the audio |
 | `segment_analysis.prediction` | array | Prediction for each audio segment |
 | `segment_analysis.confidence` | array | Confidence score for each segment |
@@ -283,7 +282,7 @@ Pro model includes additional classifiers for detailed analysis:
 ### Classification Labels
 
 | Task | Labels |
-| --- | --- |
+| :--- | :--- |
 | Real/Fake Binary | `real`, `fake` |
 | 3-Class | `real`, `ai_cover`, `fake` |
 | Detailed Fake Source | `real`, `suno_v4`, `suno_v4_5`, `suno_v4_5_plus`, `suno_v5`, `other` |
@@ -293,5 +292,3 @@ Pro model includes additional classifiers for detailed analysis:
 - **Supported formats**: mp3, wav, flac, m4a, aac, ogg
 - **Segment Analysis**: Analyzes each segment of the audio independently to detect localized AI artifacts
 - **Overall Analysis**: Considers the entire song structure and aggregates segment results for final prediction
-
-> **Note**: This API is currently in Beta. Pricing may change before general availability.
