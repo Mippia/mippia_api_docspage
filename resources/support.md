@@ -16,7 +16,7 @@ For:
 
 ### How do I get an API key?
 
-Sign up at [platform.mippia.com](https://platform.mippia.com) and generate your API key from the dashboard.
+Sign up at [platform.mippia.com](https://platform.mippia.com) and generate your API key from the [dashboard](https://platform.mippia.com/keys).
 
 ### What audio formats are supported?
 
@@ -37,4 +37,4 @@ Yes, but respect your tier's rate limits. See [Rate Limits](rate-limits.md).
 
 ### Do you offer refunds?
 
-Yes, within 30 days of purchase for subscription plans. Refunds are only provided if the service has not been used or if there is an issue with the service. Contact [mippia@mippia.com](mailto:mippia@mippia.com).
+Yes, within 30 days of purchase for subscription plans. Refunds are only provided if the service has not been used or if there is an issue with the service. Contact [us](https://platform.mippia.com/contact).

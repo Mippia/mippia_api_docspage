@@ -38,7 +38,7 @@ import requests
 def analyze_track(file_path):
     try:
         response = requests.post(
-            "https://api.mippia.com/v1/models/ai-detection-standard",
+            "https:/platform.mippia.com/v1/models/ai-detection-standard",
             headers={"Authorization": f"Bearer {API_KEY}"},
             json={"file_path": file_path, "filename": "track.mp3"}
         )

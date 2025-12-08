@@ -69,6 +69,5 @@ When processing is complete, API will send a POST request to your configured web
 
 ## Next Steps
 
-- [Learn about AI Detection models](../api-reference/ai-detection.md)
 - [Set up webhooks](../guides/webhooks.md)
 - [View pricing](../resources/pricing.md)

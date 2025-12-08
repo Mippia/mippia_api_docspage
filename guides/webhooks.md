@@ -5,71 +5,38 @@ Configure webhooks to receive real-time notifications when processing completes.
 ## Setting Up Webhooks
 
 1. Log in to your dashboard at [platform.mippia.com](https://platform.mippia.com)
-2. Navigate to **Settings** > **Webhooks**
-3. Click **Add Webhook**
+2. Click **Callback URL**
+3. [Prepare your webhook endpoint URL](#preparing-your-endpoint)
 4. Enter your webhook endpoint URL
-5. Select which events to receive
-6. Save and verify
+5. Save and verify
 
-## Webhook Events
+### Preparing Your Endpoint
 
-### AI Detection Results
+Your endpoint must handle a challenge verification request. When you register a callback URL, MIPPIA sends the following POST request to your endpoint:
 
-Triggered when AI detection analysis completes.
+**Request from MIPPIA:**
+```http
+POST /your/webhook/endpoint HTTP/1.1
+Content-Type: application/json
 
-**Payload includes**:
-- AI probability scores
-- Confidence levels
-- Analysis details
+{
+  "challenge": "generated-code-from-MIPPIA",
+  "type": "url_verification"
+}
+```
 
-### Plagiarism Detection Results
+**Your endpoint must respond:**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-Triggered when plagiarism detection completes.
+{
+  "challenge": "generated-code-from-MIPPIA"
+}
+```
 
-**Payload includes**:
-- Similarity scores
-- Matching segments with timestamps
-- Reference track information
-- Detailed comparison metrics
-
-### Lyric Plagiarism Results
-
-Triggered when lyric analysis completes.
-
-**Payload includes**:
-- Similarity scores
-- Matching lyric segments
-- Semantic analysis details
+Once your endpoint returns the correct challenge value, registration is complete.
 
 ## Webhook Security
 
 All webhook requests include an `X-MIPPIA-Signature` header for verification.
-
-### Verifying Signatures
-```python
-import hmac
-import hashlib
-
-def verify_webhook(payload, signature, secret):
-    expected_signature = hmac.new(
-        secret.encode(),
-        payload.encode(),
-        hashlib.sha256
-    ).hexdigest()
-    
-    return hmac.compare_digest(signature, expected_signature)
-```
-
-Your webhook secret is available in the dashboard under **Settings** > **Webhooks**.
-
-## Best Practices
-
-- Always verify webhook signatures
-- Respond with `200 OK` quickly (within 5 seconds)
-- Process webhook payloads asynchronously
-- Implement retry logic for failed webhooks
-- Monitor webhook delivery status in your dashboard
-
-:::{tip}
-Use webhooks instead of polling to reduce API calls and get results immediately.
-:::

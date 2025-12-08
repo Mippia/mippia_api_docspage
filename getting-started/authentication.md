@@ -19,7 +19,7 @@ Authorization: Bearer YOUR_API_KEY
 
 ## Example Request
 ```bash
-curl https://api.mippia.com/v1/models/ai-detection-standard \
+curl https://platform.mippia.com/v1/models/ai-detection-standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \
