@@ -1,4 +1,4 @@
-table {
-    margin-left: 0;
-    margin-right: auto;
+table.docutils {
+    margin-left: 0 !important;
+    margin-right: auto !important;
 }
