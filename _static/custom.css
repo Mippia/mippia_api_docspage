@@ -1,4 +1,56 @@
+/* Left-align tables */
 table.docutils {
     margin-left: 0 !important;
     margin-right: auto !important;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Table cell padding */
+table.docutils td,
+table.docutils th {
+    padding: 0.75rem 1rem;
+}
+
+/* Heading spacing */
+article h1 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+article h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+}
+
+article h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+article h4 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Paragraph spacing */
+article p {
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+}
+
+/* Code block spacing */
+pre {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* List spacing */
+article ul,
+article ol {
+    margin-bottom: 1.5rem;
+}
+
+article li {
+    margin-bottom: 0.5rem;
 }
