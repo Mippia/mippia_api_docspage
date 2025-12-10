@@ -12,9 +12,12 @@ table.docutils th {
     padding: 0.5rem 0.75rem;
 }
 
-/* Heading spacing */
-article h1 {
+/* Heading spacing - exclude first h1 */
+article h1:not(:first-child) {
     margin-top: 2rem;
+}
+
+article h1 {
     margin-bottom: 1rem;
 }
 
@@ -31,4 +34,26 @@ article h3 {
 article h4 {
     margin-top: 1.25rem;
     margin-bottom: 0.5rem;
+}
+
+/* Paragraph spacing */
+article p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* Code block spacing */
+pre {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* List spacing */
+article ul,
+article ol {
+    margin-bottom: 1rem;
+}
+
+article li {
+    margin-bottom: 0.25rem;
 }
