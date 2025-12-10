@@ -2,7 +2,7 @@
 
 Create and manage custom datasets for plagiarism detection.
 
-> Due to copyright issues, custom dataset creation requires a licensing agreement. Please [contact us](https://platform.mippia.com/contact) for access.
+> Due to copyright issues, custom dataset creation are available by request only. Please [contact us](https://platform.mippia.com/contact) for access.
 
 ## Dataset Creation
 

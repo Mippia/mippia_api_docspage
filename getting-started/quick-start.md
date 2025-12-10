@@ -7,46 +7,45 @@ Get started with MIPPIA API in minutes.
 Sign up at [platform.mippia.com](https://platform.mippia.com) and generate your API key from the dashboard.
 
 
-## Step 2: Setup Webhook
-
-Set up a webhook endpoint to get results when processing completes. 
-
-
-## Step 3: Make Your First Request
+## Step 2: Make Your First Request
 
 Detect if a track is AI-generated:
+
 ```bash
 curl https://platform.mippia.com/api/v1/ai-detection/standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
   -X POST \
-  -d '{
-    "file_path": "https://example.com/track.mp3",
-  }'
+  -F "file=@/path/to/your/track.mp3"
 ```
 
 You'll receive a task ID:
+
 ```json
 {
-  "task_id": "550e8400-e29b-41d4-a716-446655440000",
-  "status": "pending",
-  "filename": "track.mp3",
-  "model": "standard",
-  "created_at": "2025-11-09T10:30:00Z"
+  "taskId": "task_20251210021802_AjHwAeUR",
 }
 ```
 
-## Step 4: Get the Response
+## Step 3: Get Results
 
-When processing is complete, API will send a POST request to your configured webhook_url containing the detailed analysis result.
+You can receive results in two ways:
+
+### Option A: Webhook (Recommended)
+
+Set up a webhook endpoint in your dashboard. When processing completes, we'll send a POST request to your configured URL:
+
 ```json
 {
-  "task_id": "task_20251204052920_J8uNdq5z",
-  "status": "success",
-  "model_type": "standard",
-  "completed_at": "2025-12-04T05:30:15Z",
+  "taskResultId": 34,
+  "title": "track",
+  "aiModelName": "standard",
+  "url": "/api/v1/ai-detection/standard",
+  "taskId": "task_20251210021802_AjHwpPUR",
+  "requestedAt": "2025-12-10T02:18:01.327867Z",
+  "completedAt": null,
+  "status": "processing",
   "result": {
-    "audio_filename.mp3": {
+    "track.mp3": {
       "model_0": { 
         "overall_analysis": { 
           "prediction": "real", 
@@ -54,9 +53,7 @@ When processing is complete, API will send a POST request to your configured web
         } 
       },
       "model_1": {
-        "segment_analysis": { 
-          /* ... detailed array results ... */ 
-        },
+        "segment_analysis": { /* ... */ },
         "overall_analysis": { 
           "prediction": "real", 
           "confidence": 0.945 
@@ -67,7 +64,56 @@ When processing is complete, API will send a POST request to your configured web
 }
 ```
 
+### Option B: Polling
+
+Poll the task result endpoint until processing completes:
+
+```bash
+curl https://platform.mippia.com/api/v1/task/result/task_20251210021802_AjHwAeUR \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Pending response:**
+
+```json
+{
+  "task_id": "task_20251210021802_AjHwAeUR",
+  "status": "pending"
+}
+```
+
+**Completed response:**
+
+```json
+{
+  "task_id": "task_20251210021802_AjHwAeUR",
+  "status": "success",
+  "model_type": "standard",
+  "completed_at": "2025-12-04T05:30:15Z",
+  "result": {
+    "track.mp3": {
+      "model_0": { 
+        "overall_analysis": { 
+          "prediction": "real", 
+          "confidence": 0.923 
+        } 
+      },
+      "model_1": {
+        "segment_analysis": { /* ... */ },
+        "overall_analysis": { 
+          "prediction": "real", 
+          "confidence": 0.945 
+        } 
+      }
+    }
+  }
+}
+```
+
+> **Tip:** We recommend polling every 5-10 seconds. Processing typically takes 30-60 seconds depending on track length.
+
+
 ## Next Steps
 
 - [Set up webhooks](../guides/webhooks.md)
-- [View pricing](../resources/pricing.md)
+- [API Reference](../api-reference/ai-detection.md)

@@ -13,22 +13,18 @@ All API requests require authentication using an API key.
 ## Using Your API Key
 
 Include your API key in the `Authorization` header for all requests:
+
 ```http
 Authorization: Bearer YOUR_API_KEY
 ```
 
 ## Example Request
+
 ```bash
-curl https://platform.mippia.com/v1/models/ai-detection-standard \
+curl https://platform.mippia.com/api/v1/ai-detection/standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
   -X POST \
-  -d '{
-    "file_path": "https://example.com/track.mp3",
-    "filename": "track.mp3"
-  }'
+  -F "file=@/path/to/your/track.mp3"
 ```
 
-:::{warning}
-Never share your API key publicly or commit it to version control.
-:::
+> ⚠️ **Warning:** Never share your API key publicly or commit it to version control.

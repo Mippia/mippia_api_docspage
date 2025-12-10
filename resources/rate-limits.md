@@ -6,8 +6,7 @@
 |------|-----------------|
 | Free | 10 | 
 | Paid(Standard / Premium CUD) | 100 | 
-| Enterprise | Custom | Custom |
-
+| Enterprise | Custom |
 
 
 

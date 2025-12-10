@@ -37,4 +37,4 @@ Yes, but respect your tier's rate limits. See [Rate Limits](rate-limits.md).
 
 ### Do you offer refunds?
 
-Yes, within 30 days of purchase for subscription plans. Refunds are only provided if the service has not been used or if there is an issue with the service. Contact [us](https://platform.mippia.com/contact).
+Refunds are only provided if the service has not been used or if there is an issue with the service. If you get any billing issues, please contact [us](https://platform.mippia.com/contact).

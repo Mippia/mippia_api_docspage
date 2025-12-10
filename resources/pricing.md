@@ -7,8 +7,8 @@
 | AI Detection - Lite | $0.10 | ~30 seconds |
 | AI Detection - Standard | $0.20 | ~1 minute |
 | AI Detection - Pro | $0.50 | ~1 minute |
-| Plagiarism Detection | $0.50 | 3-4 minutes |
-| Lyric Plagiarism (Beta) | Free | 10-30 seconds |
+| Plagiarism Detection | $0.50 | 5~10 minutes |
+| Lyric Plagiarism (Beta) | Free for now | 10-30 seconds |
 
 ## Free Tier
 
@@ -22,10 +22,10 @@ Get started with our free tier:
 
 ### Standard - $10/month
 
-Recommended for 1,000+ requests/month
+Recommended for 100+ requests/month
 
 - $20 monthly available credits
-- Available access to AI Detection-Pro, and Dataset Creation
+- Available access to AI Detection-Pro
 - Rate limit : 100 request/min
 
 ### Premium CUD - $399/month
@@ -33,7 +33,7 @@ Recommended for 1,000+ requests/month
 Recommended for 10,000+ requests/month
 
 - $599 monthly available credits
-- Available access to AI Detection-Pro, and Dataset Creation
+- Available access to AI Detection-Pro
 - 30% Discount for all api usage
 - Rate limit : 100 request/min
 

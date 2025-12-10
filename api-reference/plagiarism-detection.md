@@ -90,58 +90,53 @@ print(response.json())
   "result": {
     "signature": [
       {
-        "signature_metric": 0.847,
+        "signature_metric": 0.7525,
         "original": {
           "title": "My New Song",
-          "link": "https://example.com/my-song.mp3",
-          "time_start": 30.5,
-          "time_end": 45.2,
-          "key": "C major",
-          "chords": ["C", "Am", "F", "G", "C", "Am", "Dm", "G", "C", "F", "Am", "G", "F", "C", "G", "C"]
+          "link": null,
+          "time_start": 7.42,
+          "time_end": 14.81,
+          "key": "G major",
+          "chords": ["N", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj", "D:maj"]
         },
         "comparison": {
           "title": "Similar Existing Song",
-          "link": "https://example.com/existing-song.mp3",
-          "time_start": 15.0,
-          "time_end": 30.0,
-          "key": "C major",
-          "chords": ["C", "Am", "F", "G", "C", "Am", "Dm", "G", "C", "F", "Am", "G", "F", "C", "G", "C"]
+          "link": "https://www.youtube.com/watch?v=example",
+          "time_start": 94.38,
+          "time_end": 102.12,
+          "key": "E minor",
+          "chords": ["E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min", "E:min"]
         },
         "scores": {
-          "vocal": 0.823,
-          "melody": 0.891,
-          "bass": 0.756,
-          "chord": 0.912
+          "vocal": {
+            "metric": 1,
+            "pitch_score": 0.665,
+            "correlation": 0.889,
+            "ratio": 0.796,
+            "bpm_ratio": 0.967,
+            "difficulty": 0.731
+          },
+          "melody": {
+            "metric": 0,
+            "pitch_score": 0,
+            "correlation": 0,
+            "ratio": 0,
+            "bpm_ratio": 0.967,
+            "difficulty": 0.047
+          },
+          "topline": {
+            "metric": 0.875,
+            "pitch_score": 0.444,
+            "correlation": 0.923,
+            "ratio": 0.780,
+            "bpm_ratio": 0.967,
+            "difficulty": 0.5
+          },
+          "chord": 0
         }
       }
     ],
-    "vocal": [
-      {
-        "signature_metric": 0.792,
-        "original": {
-          "title": "My New Song",
-          "link": "https://example.com/my-song.mp3",
-          "time_start": 45.0,
-          "time_end": 60.0,
-          "key": "G major",
-          "chords": ["G", "Em", "C", "D", "G", "Em", "Am", "D", "G", "C", "Em", "D", "C", "G", "D", "G"]
-        },
-        "comparison": {
-          "title": "Another Song",
-          "link": "https://example.com/another-song.mp3",
-          "time_start": 20.0,
-          "time_end": 35.0,
-          "key": "G major",
-          "chords": ["G", "Em", "C", "D", "G", "Em", "Am", "D", "G", "C", "Em", "D", "C", "G", "D", "G"]
-        },
-        "scores": {
-          "vocal": 0.856,
-          "melody": 0.734,
-          "bass": 0.689,
-          "chord": 0.878
-        }
-      }
-    ],
+    "vocal": [...],
     "inst": [...],
     "topline": [...]
   }
@@ -181,35 +176,30 @@ print(response.json())
 | Field | Type | Description |
 | --- | --- | --- |
 | `title` | string | Song title |
-| `link` | string | Audio file URL or path |
+| `link` | string | Audio file URL (null for uploaded files) |
 | `time_start` | float | Segment start time (seconds) |
 | `time_end` | float | Segment end time (seconds) |
-| `key` | string | Musical key (e.g., "C major", "A minor") |
-| `chords` | array | Chord progression (fixed length: 16 chords) |
+| `key` | string | Musical key (e.g., "G major", "E minor") |
+| `chords` | array | Chord progression in shorthand notation (fixed length: 16 chords). Format: `Root:quality` (e.g., "C:maj", "E:min", "D:maj7"). "N" indicates no chord detected. |
 
-### Score Fields
+### Score Object Fields
+
+Each component (vocal, melody, topline) contains:
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `vocal` | float | Vocal melody similarity (0.0 - 1.0) |
-| `melody` | float | Instrumental melody similarity (0.0 - 1.0) |
+| `metric` | float | Final similarity metric for this component (0.0 - 1.0) |
+| `pitch_score` | float | Pitch-based similarity score (0.0 - 1.0) |
+| `correlation` | float | Rhythmic pattern correlation (0.0 - 1.0) |
+| `ratio` | float | Matching ratio between segments (0.0 - 1.0) |
+| `bpm_ratio` | float | Tempo similarity ratio (0.0 - 1.0) |
+| `difficulty` | float | Analysis difficulty factor (0.0 - 1.0), higher values indicate more complex musical content, ex) simple rapping goes low difficulty. |
+
+| Field | Type | Description |
+| --- | --- | --- |
 | `chord` | float | Chord progression similarity (0.0 - 1.0) |
 
-## Analysis Method
-
-The plagiarism detection system analyzes music at a structural level:
-
-1. **Segmentation**: Audio is divided into musical segments based on beat and bar detection
-2. **Feature Extraction**: Each segment is analyzed for vocal melody, instrumental melody, bass line, and chord progression (16 chords per segment)
-3. **Clustering**: Segments are matched against pre-indexed clusters for efficient search
-4. **Comparison**: Matched candidates are compared in detail using multiple similarity metrics
 
 ## Notes
 
-- **Database**: 150,000+ songs indexed
-- **Processing time**: 30-60 seconds typical
-- **Segment-based**: Results show which specific parts of songs are similar
-- **Multi-dimensional**: Analyzes vocal, melody, bass, and chord independently
-- **Chord resolution**: Fixed 16-chord sequence per segment for consistent comparison
-
-> **Note**: This API is currently in Beta. Pricing will be announced before general availability.
+- **Segment-based**: Results show which specific parts of songs are similar. You will get 'simplified' results rather than mippia website.

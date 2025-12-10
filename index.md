@@ -22,8 +22,6 @@ getting-started/quick-start
 :hidden:
 
 guides/webhooks
-guides/error-handling
-guides/best-practices
 ```
 
 ```{toctree}
