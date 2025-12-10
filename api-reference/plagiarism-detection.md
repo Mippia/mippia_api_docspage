@@ -13,15 +13,15 @@ POST /api/v1/plagiarism/{model_name}
 ### Path Parameters
 
 | Name | Type | Required | Description |
-| --- | --- | --- | --- |
+|:-----|:-----|:---------|:------------|
 | `model_name` | string | Yes | Model to use: `standard` |
 
 ### Request Body
 
 | Field | Type | Required | Description |
-| --- | --- | --- | --- |
+|:------|:-----|:---------|:------------|
 | `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
-| `dataset_id` | string | No | Dataset ID for comparison, 'default' is only option available for now. |
+| `dataset_id` | string | No | Dataset ID for comparison. `default` is only option available for now. |
 
 ## Request Example
 
@@ -146,60 +146,65 @@ print(response.json())
 ## Result Fields
 
 | Field | Type | Description |
-| --- | --- | --- |
+|:------|:-----|:------------|
 | `task_id` | string | Unique task identifier |
 | `task_type` | string | Task type: `plagiarism_detection` |
 | `status` | string | Task status: `pending`, `processing`, `success`, `failure` |
 | `completed_at` | string | ISO 8601 completion timestamp |
-| `result` | object | Detection results grouped by match type |
+| `result` | object | Detection results grouped by category |
 
 ### Result Categories
 
+Results are grouped into four categories based on what aspect of the music matched:
+
 | Category | Description |
-| --- | --- |
-| `signature` | Overall signature similarity matches |
-| `vocal` | Vocal melody similarity matches |
-| `inst` | Instrumental similarity matches |
-| `topline` | Topline (main melody) similarity matches |
+|:---------|:------------|
+| `signature` | Overall musical signature matches |
+| `vocal` | Vocal melody matches |
+| `inst` | Instrumental matches |
+| `topline` | Main melody (topline) matches |
 
-### Match Object Fields
+Each category contains an array of match objects.
+
+### Match Object
 
 | Field | Type | Description |
-| --- | --- | --- |
+|:------|:-----|:------------|
 | `signature_metric` | float | Overall similarity score (0.0 - 1.0) |
-| `original` | object | Information about the query segment |
-| `comparison` | object | Information about the matched segment |
-| `scores` | object | Detailed similarity scores by component |
+| `original` | object | Query segment info |
+| `comparison` | object | Matched segment info |
+| `scores` | object | Detailed scores by component |
 
-### Original / Comparison Fields
+### Segment Info (original / comparison)
 
 | Field | Type | Description |
-| --- | --- | --- |
+|:------|:-----|:------------|
 | `title` | string | Song title |
-| `link` | string | Audio file URL (null for uploaded files) |
-| `time_start` | float | Segment start time (seconds) |
-| `time_end` | float | Segment end time (seconds) |
-| `key` | string | Musical key (e.g., "G major", "E minor") |
-| `chords` | array | Chord progression in shorthand notation (fixed length: 16 chords). Format: `Root:quality` (e.g., "C:maj", "E:min", "D:maj7"). "N" indicates no chord detected. |
+| `link` | string | Audio URL (null for uploaded files) |
+| `time_start` | float | Start time in seconds |
+| `time_end` | float | End time in seconds |
+| `key` | string | Musical key (e.g., "G major") |
+| `chords` | array | 16 chords in shorthand notation (e.g., "C:maj", "E:min", "N" for none) |
 
-### Score Object Fields
+### Scores
 
-Each component (vocal, melody, topline) contains:
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `metric` | float | Final similarity metric for this component (0.0 - 1.0) |
-| `pitch_score` | float | Pitch-based similarity score (0.0 - 1.0) |
-| `correlation` | float | Rhythmic pattern correlation (0.0 - 1.0) |
-| `ratio` | float | Matching ratio between segments (0.0 - 1.0) |
-| `bpm_ratio` | float | Tempo similarity ratio (0.0 - 1.0) |
-| `difficulty` | float | Analysis difficulty factor (0.0 - 1.0), higher values indicate more complex musical content, ex) simple rapping goes low difficulty. |
+The `scores` object contains similarity breakdowns for `vocal`, `melody`, and `topline`:
 
 | Field | Type | Description |
-| --- | --- | --- |
+|:------|:-----|:------------|
+| `metric` | float | Final similarity score (0.0 - 1.0) |
+| `pitch_score` | float | Pitch similarity (0.0 - 1.0) |
+| `correlation` | float | Rhythmic pattern similarity (0.0 - 1.0) |
+| `ratio` | float | Segment matching ratio (0.0 - 1.0) |
+| `bpm_ratio` | float | Tempo similarity (0.0 - 1.0) |
+| `difficulty` | float | Content complexity (0.0 - 1.0). Simple patterns like rapping score lower. |
+
+Additionally:
+
+| Field | Type | Description |
+|:------|:-----|:------------|
 | `chord` | float | Chord progression similarity (0.0 - 1.0) |
-
 
 ## Notes
 
-- **Segment-based**: Results show which specific parts of songs are similar. You will get 'simplified' results rather than mippia website.
+- **Segment-based**: Results show which specific parts of songs are similar. API returns simplified results compared to the MIPPIA website.
