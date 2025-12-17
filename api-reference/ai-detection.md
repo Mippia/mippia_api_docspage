@@ -24,11 +24,11 @@ Detect AI-generated music.
 
 ## Models
 
-| Model | Processing Time | Price | Description |
-| :--- | :--- | :--- | :--- |
-| `lite` | 30-40 seconds | $0.10 | Single model, fast detection |
-| `standard` | 30~40 seconds | $0.20 | model ensemble, balanced accuracy |
-| `pro` | ~1 minute | $0.50 | model ensemble with detailed classification |
+| Model | Processing Time | Description |
+| :--- | :--- | :--- |
+| `lite` | 30-40 seconds | Single model, fast detection |
+| `standard` | 30-40 seconds | Model ensemble, balanced accuracy |
+| `pro` | ~1 minute | Model ensemble with detailed classification |
 
 ---
 
@@ -92,72 +92,78 @@ print(response.json())
   "model_type": "standard",
   "completed_at": "2025-12-04T05:30:15Z",
   "result": {
-    "audio_filename.mp3": [
-      {
-        "overall_analysis": {
-          "prediction": "real",
-          "confidence": 0.923
-        },
-        "config": {
-          "model_id": "model_0",
-          "analysis_focus": "Waveform & Melody Pattern",
-          "task": "Real/Fake Binary Classification",
-          "num_classes": 2,
-          "labels": ["real", "fake"]
-        }
+    "audio_filename.mp3": {
+      "final_result": {
+        "prediction": "real",
+        "confidence": 0.9382
       },
-      {
-        "segment_analysis": {
-          "prediction": ["real", "real", "real", "real"],
-          "confidence": [0.891, 0.912, 0.887, 0.903]
+      "model_results": [
+        {
+          "overall_analysis": {
+            "prediction": "real",
+            "confidence": 0.923
+          },
+          "config": {
+            "model_id": "model_0",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Real/Fake Binary Classification",
+            "num_classes": 2,
+            "labels": ["real", "fake"]
+          }
         },
-        "overall_analysis": {
-          "prediction": "real",
-          "confidence": 0.945
+        {
+          "segment_analysis": {
+            "prediction": ["real", "real", "real", "real"],
+            "confidence": [0.891, 0.912, 0.887, 0.903]
+          },
+          "overall_analysis": {
+            "prediction": "real",
+            "confidence": 0.945
+          },
+          "config": {
+            "model_id": "model_1",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Real/Fake Binary Classification",
+            "num_classes": 2,
+            "labels": ["real", "fake"]
+          }
         },
-        "config": {
-          "model_id": "model_1",
-          "analysis_focus": "Waveform & Melody Pattern",
-          "task": "Real/Fake Binary Classification",
-          "num_classes": 2,
-          "labels": ["real", "fake"]
+        {
+          "segment_analysis": {
+            "prediction": ["real", "real", "real", "real"],
+            "confidence": [0.876, 0.901, 0.889, 0.912]
+          },
+          "overall_analysis": {
+            "prediction": "real",
+            "confidence": 0.934
+          },
+          "config": {
+            "model_id": "model_2",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Real/Fake Binary Classification",
+            "num_classes": 2,
+            "labels": ["real", "fake"]
+          }
+        },
+        {
+          "segment_analysis": {
+            "prediction": ["real", "real", "real", "real"],
+            "confidence": [0.902, 0.918, 0.895, 0.921]
+          },
+          "overall_analysis": {
+            "prediction": "real",
+            "confidence": 0.951
+          },
+          "config": {
+            "model_id": "model_3",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Real/Fake Binary Classification",
+            "num_classes": 2,
+            "labels": ["real", "fake"]
+          }
         }
-      },
-      {
-        "segment_analysis": {
-          "prediction": ["real", "real", "real", "real"],
-          "confidence": [0.876, 0.901, 0.889, 0.912]
-        },
-        "overall_analysis": {
-          "prediction": "real",
-          "confidence": 0.934
-        },
-        "config": {
-          "model_id": "model_2",
-          "analysis_focus": "Waveform & Melody Pattern",
-          "task": "Real/Fake Binary Classification",
-          "num_classes": 2,
-          "labels": ["real", "fake"]
-        }
-      },
-      {
-        "segment_analysis": {
-          "prediction": ["real", "real", "real", "real"],
-          "confidence": [0.902, 0.918, 0.895, 0.921]
-        },
-        "overall_analysis": {
-          "prediction": "real",
-          "confidence": 0.951
-        },
-        "config": {
-          "model_id": "model_3",
-          "analysis_focus": "Waveform & Melody Pattern",
-          "task": "Real/Fake Binary Classification",
-          "num_classes": 2,
-          "labels": ["real", "fake"]
-        }
-      }
-    ]
+      ]
+    }
   }
 }
 ```
@@ -173,72 +179,78 @@ Pro model includes additional classifiers for detailed analysis:
   "model_type": "pro",
   "completed_at": "2025-12-04T05:30:45Z",
   "result": {
-    "audio_filename.mp3": [
-      {
-        "overall_analysis": {
-          "prediction": "fake",
-          "confidence": 0.876
-        },
-        "config": {
-          "model_id": "model_0",
-          "analysis_focus": "Waveform & Melody Pattern",
-          "task": "Real/Fake Binary Classification",
-          "num_classes": 2,
-          "labels": ["real", "fake"]
-        }
+    "audio_filename.mp3": {
+      "final_result": {
+        "prediction": "fake",
+        "confidence": 0.8654
       },
-      {
-        "segment_analysis": {
-          "prediction": ["fake", "fake", "ai_cover", "fake"],
-          "confidence": [0.712, 0.834, 0.623, 0.789]
+      "model_results": [
+        {
+          "overall_analysis": {
+            "prediction": "fake",
+            "confidence": 0.876
+          },
+          "config": {
+            "model_id": "model_0",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Real/Fake Binary Classification",
+            "num_classes": 2,
+            "labels": ["real", "fake"]
+          }
         },
-        "overall_analysis": {
-          "prediction": "fake",
-          "confidence": 0.823
+        {
+          "segment_analysis": {
+            "prediction": ["fake", "fake", "ai_cover", "fake"],
+            "confidence": [0.712, 0.834, 0.623, 0.789]
+          },
+          "overall_analysis": {
+            "prediction": "fake",
+            "confidence": 0.823
+          },
+          "config": {
+            "model_id": "model_4",
+            "analysis_focus": "Mixing & Audio Effects",
+            "task": "Real/AI-Cover/Fake 3-Class",
+            "num_classes": 3,
+            "labels": ["real", "ai_cover", "fake"]
+          }
         },
-        "config": {
-          "model_id": "model_4",
-          "analysis_focus": "Mixing & Audio Effects",
-          "task": "Real/AI-Cover/Fake 3-Class",
-          "num_classes": 3,
-          "labels": ["real", "ai_cover", "fake"]
+        {
+          "segment_analysis": {
+            "prediction": ["suno_v4", "suno_v4", "suno_v4_5", "suno_v4"],
+            "confidence": [0.534, 0.612, 0.489, 0.567]
+          },
+          "overall_analysis": {
+            "prediction": "suno_v4",
+            "confidence": 0.634
+          },
+          "config": {
+            "model_id": "model_5",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Detailed Fake Source Classification",
+            "num_classes": 6,
+            "labels": ["real", "suno_v4", "suno_v4_5", "suno_v4_5_plus", "suno_v5", "other"]
+          }
+        },
+        {
+          "segment_analysis": {
+            "prediction": ["fake", "fake", "fake", "fake"],
+            "confidence": [0.891, 0.912, 0.878, 0.901]
+          },
+          "overall_analysis": {
+            "prediction": "fake",
+            "confidence": 0.912
+          },
+          "config": {
+            "model_id": "model_6",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Real/AI-Cover/Fake 3-Class",
+            "num_classes": 3,
+            "labels": ["real", "ai_cover", "fake"]
+          }
         }
-      },
-      {
-        "segment_analysis": {
-          "prediction": ["suno_v4", "suno_v4", "suno_v4_5", "suno_v4"],
-          "confidence": [0.534, 0.612, 0.489, 0.567]
-        },
-        "overall_analysis": {
-          "prediction": "suno_v4",
-          "confidence": 0.634
-        },
-        "config": {
-          "model_id": "model_5",
-          "analysis_focus": "Waveform & Melody Pattern",
-          "task": "Detailed Fake Source Classification",
-          "num_classes": 6,
-          "labels": ["real", "suno_v4", "suno_v4_5", "suno_v4_5_plus", "suno_v5", "other"]
-        }
-      },
-      {
-        "segment_analysis": {
-          "prediction": ["fake", "fake", "fake", "fake"],
-          "confidence": [0.891, 0.912, 0.878, 0.901]
-        },
-        "overall_analysis": {
-          "prediction": "fake",
-          "confidence": 0.912
-        },
-        "config": {
-          "model_id": "model_6",
-          "analysis_focus": "Waveform & Melody Pattern",
-          "task": "Real/AI-Cover/Fake 3-Class",
-          "num_classes": 3,
-          "labels": ["real", "ai_cover", "fake"]
-        }
-      }
-    ]
+      ]
+    }
   }
 }
 ```
@@ -257,15 +269,25 @@ Pro model includes additional classifiers for detailed analysis:
 
 The result is an object where:
 - **Key**: Audio filename
-- **Value**: Array of model results
+- **Value**: Object containing `final_result` and `model_results`
 
-Each array element contains results from one model in the ensemble.
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `final_result` | object | Aggregated prediction from all Real/Fake binary classification models |
+| `model_results` | array | Individual results from each model in the ensemble |
+
+### Final Result Fields
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `prediction` | string | Final aggregated prediction: `real` or `fake` |
+| `confidence` | float | Final confidence score (0.0 - 1.0) |
 
 ### Model Result Fields
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
-| `segment_analysis` | object | Results from analyzing individual segments (Optional, There is one model which has only segment_analysis!) |
+| `segment_analysis` | object | Results from analyzing individual segments (optional) |
 | `overall_analysis` | object | Final prediction for the entire audio |
 | `config` | object | Model configuration and metadata |
 
@@ -308,6 +330,7 @@ Each array element contains results from one model in the ensemble.
 ## Notes
 
 - **Supported formats**: mp3, wav, flac, m4a, aac, ogg
+- **Final Result**: Weighted average of all Real/Fake binary classification models for a single consolidated prediction
 - **Segment Analysis**: Analyzes each segment of the audio independently to detect localized AI artifacts
 - **Overall Analysis**: Considers the entire song structure and aggregates segment results for final prediction
-- **Result Array**: Each element in the result array represents one model's analysis, allowing clients to iterate through all model results easily
+- **Model Results**: Each element in the `model_results` array represents one model's analysis
