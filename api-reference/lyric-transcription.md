@@ -19,7 +19,7 @@ POST /api/v1/lyric_transcription/{model}
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `file_path` | string | Yes | Path to the audio file in cloud storage |
+| `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
 
 ## Request Example
 
@@ -28,11 +28,8 @@ POST /api/v1/lyric_transcription/{model}
 ```bash
 curl https://platform.mippia.com/api/v1/lyric_transcription/standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
   -X POST \
-  -d '{
-    "file_path": "uploads/audio/song.mp3"
-  }'
+  -F "file=@/path/to/audio.mp3"
 ```
 
 ### Python
@@ -42,24 +39,20 @@ import requests
 
 url = "https://platform.mippia.com/api/v1/lyric_transcription/standard"
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY",
-    "Content-Type": "application/json"
+    "Authorization": "Bearer YOUR_API_KEY"
 }
-data = {
-    "file_path": "uploads/audio/song.mp3"
+files = {
+    "file": open("/path/to/audio.mp3", "rb")
 }
 
-response = requests.post(url, headers=headers, json=data)
+response = requests.post(url, headers=headers, files=files)
 print(response.json())
 ```
 
 ## Response (Initial)
-
 ```json
 {
-  "task_id": "task_20251204052920_J8uNdq5z",
-  "status": "pending",
-  "created_at": "2025-12-04T05:29:20Z"
+  "taskId": "string"
 }
 ```
 
