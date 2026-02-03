@@ -14,8 +14,7 @@ POST /api/v1/lyric_transcription/{model}
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| `model` | string | Yes | Transcription model name |
-
+| `model` | string | Yes | Model to use: `standard` |
 ### Request Body
 
 | Field | Type | Required | Description |
