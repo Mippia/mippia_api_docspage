@@ -32,7 +32,6 @@ guides/webhooks
 api-reference/ai-detection
 api-reference/plagiarism-detection
 api-reference/lyric-plagiarism
-api-reference/lyric-transcription
 api-reference/dataset-management
 ```
 
