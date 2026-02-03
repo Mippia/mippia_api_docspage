@@ -27,7 +27,7 @@ POST /api/v1/lyric_transcription/{model}
 ### cURL
 
 ```bash
-curl https://platform.mippia.com/api/v1/lyric_transcription/whisper \
+curl https://platform.mippia.com/api/v1/lyric_transcription/standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -X POST \
@@ -41,7 +41,7 @@ curl https://platform.mippia.com/api/v1/lyric_transcription/whisper \
 ```python
 import requests
 
-url = "https://platform.mippia.com/api/v1/lyric_transcription/whisper"
+url = "https://platform.mippia.com/api/v1/lyric_transcription/standard"
 headers = {
     "Authorization": "Bearer YOUR_API_KEY",
     "Content-Type": "application/json"
@@ -176,7 +176,6 @@ The transcription system supports 18 languages:
 1. **Vocal Separation**: Audio is processed using Demucs to isolate vocals from instruments
 2. **Vocal Detection**: Checks for presence of vocals using RMS and zero-crossing rate analysis
 3. **Language Detection**: Multiple segments are analyzed to detect language distribution
-4. **Transcription**: Whisper model transcribes the isolated vocals
 
 ## Notes
 
