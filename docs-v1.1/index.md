@@ -29,7 +29,6 @@ guides/webhooks
 :caption: API Reference
 :hidden:
 
-api-reference/upload-music
 api-reference/ai-detection
 api-reference/plagiarism-detection
 api-reference/lyric-plagiarism

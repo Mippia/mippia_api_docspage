@@ -31,10 +31,15 @@ jobs:
           pip install sphinx furo myst-parser sphinx-copybutton
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       
-      - name: Build V1.1 docs (latest)
+      - name: Build V1.1.1 docs (latest)
         run: |
           make clean || true
           make html
+      
+      - name: Build V1.1 docs
+        run: |
+          cd docs-v1.1
+          sphinx-build -b html . ../_build/html/v1.1
       
       - name: Build V1.0 docs
         run: |

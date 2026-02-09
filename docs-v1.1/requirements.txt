@@ -1,0 +1,8 @@
+sphinx
+sphinx-rtd-theme
+myst-parser
+sphinx-copybutton
+sphinx
+furo
+myst-parser
+sphinx-design

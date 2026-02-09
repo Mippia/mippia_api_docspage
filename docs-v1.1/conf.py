@@ -1,7 +1,7 @@
 project = 'MIPPIA API'
 copyright = '2025, MIPPIA'
 author = 'MIPPIA'
-release = '1.1.1'
+release = '1.1'
 
 extensions = [
     'myst_parser',
@@ -11,7 +11,7 @@ extensions = [
 ]
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'docs-v1.0', 'docs-v1.1']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'furo'
 html_static_path = ['_static']
@@ -42,8 +42,8 @@ html_theme_options = {
     "announcement": """
         <div class="version-switcher">
             Version: <select onchange="window.location.href=this.value">
-                <option value="/" selected>1.1.1 (Latest)</option>
-                <option value="/v1.1/">1.1</option>
+                <option value="/">1.1.1 (Latest)</option>
+                <option value="/v1.1/" selected>1.1</option>
                 <option value="/v1.0/">1.0</option>
             </select>
         </div>

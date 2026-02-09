@@ -29,11 +29,23 @@ myst_enable_extensions = [
     "tasklist",
 ]
 
-# 테마 옵션
 html_theme_options = {
-    'navigation_depth': 4,
-    'collapse_navigation': False,
-    'sticky_navigation': True,
-    'includehidden': True,
-    'titles_only': False
+    "light_css_variables": {
+        "color-brand-primary": "#2563eb",
+        "color-brand-content": "#2563eb",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#60a5fa",
+        "color-brand-content": "#60a5fa",
+    },
+    "navigation_with_keys": True,
+    "announcement": """
+        <div class="version-switcher">
+            Version: <select onchange="window.location.href=this.value">
+                <option value="/">1.1.1 (Latest)</option>
+                <option value="/v1.1/">1.1</option>
+                <option value="/v1.0/" selected>1.0</option>
+            </select>
+        </div>
+    """,
 }
