@@ -20,19 +20,18 @@ POST /api/v1/plagiarism/{model_name}
 
 | Field | Type | Required | Description |
 |:------|:-----|:---------|:------------|
-| `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
+| `musicId` | string   | Unique music identifier      | uploaded via `[POST] /api/v1/music` endpoint |
 | `dataset_id` | string | No | Dataset ID for comparison. `default` is only option available for now. |
 
 ## Request Example
-
 ### cURL
 
 ```bash
 curl https://platform.mippia.com/api/v1/plagiarism/standard \
-  -H "Authorization: Bearer YOUR_API_KEY" \
   -X POST \
-  -F "file=@/path/to/audio.mp3" \
-  -F "dataset_id=default"
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"musicId": "YOUR_MUSIC_ID"}'
 ```
 
 ### Python
@@ -42,17 +41,16 @@ import requests
 
 url = "https://platform.mippia.com/api/v1/plagiarism/standard"
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY"
-}
-files = {
-    "file": open("/path/to/audio.mp3", "rb")
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
 }
 data = {
-    "dataset_id": "default"
+    "musicId": "YOUR_MUSIC_ID"
 }
 
-response = requests.post(url, headers=headers, files=files, data=data)
+response = requests.post(url, headers=headers, json=data)
 print(response.json())
+
 ```
 
 ## Response (Initial)

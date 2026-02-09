@@ -7,15 +7,34 @@ Get started with MIPPIA API in minutes.
 Sign up at [platform.mippia.com](https://platform.mippia.com) and generate your API key from the dashboard.
 
 
-## Step 2: Make Your First Request
+## Step 2:  Upload Your Track
+Get a `musicId` by uploading your audio file
+
+```bash
+curl https://platform.mippia.com/api/v1/music \
+  -X POST \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@/path/to/your/track.mp3"
+```
+You'll receive a music ID:
+```json
+{
+  "musicId": "cd75b87f-cad9-4dfd-a49f-8a2d34408a0e",
+  "title": "track",
+  "created_at": "2025-12-10T02:18:01Z"
+}
+```
+
+## Step 3: Make Your First Request
 
 Detect if a track is AI-generated:
 
 ```bash
 curl https://platform.mippia.com/api/v1/ai-detection/standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
   -X POST \
-  -F "file=@/path/to/your/track.mp3"
+  -d '{"musicId": "cd75b87f-cad9-4dfd-a49f-8a2d34408a0e"}'
 ```
 
 You'll receive a task ID:
@@ -26,7 +45,7 @@ You'll receive a task ID:
 }
 ```
 
-## Step 3: Get Results
+## Step 4: Get Results
 
 You can receive results in two ways:
 

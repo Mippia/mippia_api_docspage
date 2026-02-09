@@ -17,19 +17,19 @@ POST /api/v1/lyric_transcription/{model}
 | `model` | string | Yes | Model to use: `standard` |
 ### Request Body
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
+| Field | Type | Required | Description                                  |
+| --- | --- | --- |----------------------------------------------|
+| `musicId` | string   | Unique music identifier      | uploaded via `[POST] /api/v1/music` endpoint |
 
 ## Request Example
-
 ### cURL
 
 ```bash
 curl https://platform.mippia.com/api/v1/lyric_transcription/standard \
-  -H "Authorization: Bearer YOUR_API_KEY" \
   -X POST \
-  -F "file=@/path/to/audio.mp3"
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"musicId": "YOUR_MUSIC_ID"}'
 ```
 
 ### Python
@@ -39,14 +39,16 @@ import requests
 
 url = "https://platform.mippia.com/api/v1/lyric_transcription/standard"
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY"
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
 }
-files = {
-    "file": open("/path/to/audio.mp3", "rb")
+data = {
+    "musicId": "YOUR_MUSIC_ID"
 }
 
-response = requests.post(url, headers=headers, files=files)
+response = requests.post(url, headers=headers, json=data)
 print(response.json())
+
 ```
 
 ## Response (Initial)

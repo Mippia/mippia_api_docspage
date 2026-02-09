@@ -16,9 +16,9 @@ Detect AI-generated music.
 
 ### Request Body
 
-| Field | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
+| Field      | Type | Required | Description |
+|:-----------| :--- | :--- | :--- |
+| `musicId` | string   | Unique music identifier      | uploaded via `[POST] /api/v1/music` endpoint |
 
 ---
 
@@ -37,10 +37,11 @@ Detect AI-generated music.
 ### cURL
 
 ```bash
-curl https://platform.mippia.com/api/v1/ai-detection/standard \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+curl https://platform.aippim.shop/api/v1/ai-detection/standard \
   -X POST \
-  -F "file=@/path/to/audio.mp3"
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"musicId": "YOUR_MUSIC_ID"}'
 ```
 
 ### Python
@@ -48,16 +49,18 @@ curl https://platform.mippia.com/api/v1/ai-detection/standard \
 ```python
 import requests
 
-url = "https://platform.mippia.com/api/v1/ai-detection/standard"
+url = "https://platform.aippim.shop/api/v1/ai-detection/standard"
 headers = {
-    "Authorization": "Bearer YOUR_API_KEY"
+    "Authorization": "Bearer YOUR_API_KEY",
+    "Content-Type": "application/json"
 }
-files = {
-    "file": open("/path/to/audio.mp3", "rb")
+data = {
+    "musicId": "YOUR_MUSIC_ID"
 }
 
-response = requests.post(url, headers=headers, files=files)
+response = requests.post(url, headers=headers, json=data)
 print(response.json())
+
 ```
 
 ## Response (Initial)
