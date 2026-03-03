@@ -37,7 +37,7 @@ Detect AI-generated music.
 ### cURL
 
 ```bash
-curl https://platform.aippim.shop/api/v1/ai-detection/standard \
+curl https://platform.mippia.com/api/v1/ai-detection/standard \
   -X POST \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
@@ -49,7 +49,7 @@ curl https://platform.aippim.shop/api/v1/ai-detection/standard \
 ```python
 import requests
 
-url = "https://platform.aippim.shop/api/v1/ai-detection/standard"
+url = "https://platform.mippia.com/api/v1/ai-detection/standard"
 headers = {
     "Authorization": "Bearer YOUR_API_KEY",
     "Content-Type": "application/json"
