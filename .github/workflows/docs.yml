@@ -28,7 +28,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install sphinx furo myst-parser sphinx-copybutton
+          pip install sphinx furo myst-parser sphinx-copybutton sphinxext-opengraph sphinx-sitemap
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       
       - name: Build V1.1.1 docs (latest)

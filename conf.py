@@ -8,15 +8,21 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx_copybutton',
+    'sphinxext.opengraph',
+    'sphinx_sitemap',
 ]
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'docs-v1.0', 'docs-v1.1']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'docs-v1.0', 'docs-v1.1', 'robots.txt']
 
 html_theme = 'furo'
 html_static_path = ['_static']
 html_css_files = ['custom.css']
 html_js_files = ['custom.js']
+html_extra_path = ['robots.txt']
+
+html_favicon = '_static/favicon.ico'
+html_baseurl = 'https://docs.mippia.com/'
 
 source_suffix = {
     '.rst': 'restructuredtext',
@@ -28,6 +34,14 @@ myst_enable_extensions = [
     "deflist",
     "tasklist",
 ]
+
+sitemap_url_scheme = '{link}'
+
+ogp_site_url = 'https://docs.mippia.com/'
+ogp_site_name = 'MIPPIA API Documentation'
+ogp_image = 'https://docs.mippia.com/_static/og-image.png'
+ogp_description_length = 200
+ogp_type = 'website'
 
 html_theme_options = {
     "light_css_variables": {

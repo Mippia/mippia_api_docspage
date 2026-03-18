@@ -7,7 +7,8 @@ extensions = [
     'myst_parser',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    'sphinx_copybutton',  # 코드 복사 버튼
+    'sphinx_copybutton',
+    'sphinxext.opengraph',
 ]
 
 templates_path = ['_templates']
@@ -17,7 +18,9 @@ html_theme = 'furo'
 html_static_path = ['_static']
 html_css_files = ['custom.css']
 
-# Markdown 설정
+html_favicon = '_static/favicon.ico'
+html_baseurl = 'https://docs.mippia.com/v1.0/'
+
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
@@ -28,6 +31,12 @@ myst_enable_extensions = [
     "deflist",
     "tasklist",
 ]
+
+ogp_site_url = 'https://docs.mippia.com/v1.0/'
+ogp_site_name = 'MIPPIA API Documentation (v1.0)'
+ogp_image = 'https://docs.mippia.com/_static/og-image.png'
+ogp_description_length = 200
+ogp_type = 'website'
 
 html_theme_options = {
     "light_css_variables": {
