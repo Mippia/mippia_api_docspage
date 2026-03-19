@@ -5,7 +5,7 @@ Extract lyrics from audio files using AI-powered speech recognition with multi-l
 ## Endpoint
 
 ```
-POST /api/v1/lyric_transcription/{model}
+POST /api/v1/lyric-transcription/{model}
 ```
 
 ## Parameters
@@ -26,7 +26,7 @@ POST /api/v1/lyric_transcription/{model}
 ### cURL
 
 ```bash
-curl https://platform.mippia.com/api/v1/lyric_transcription/standard \
+curl https://platform.mippia.com/api/v1/lyric-transcription/standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -X POST \
   -F "file=@/path/to/audio.mp3"
@@ -37,7 +37,7 @@ curl https://platform.mippia.com/api/v1/lyric_transcription/standard \
 ```python
 import requests
 
-url = "https://platform.mippia.com/api/v1/lyric_transcription/standard"
+url = "https://platform.mippia.com/api/v1/lyric-transcription/standard"
 headers = {
     "Authorization": "Bearer YOUR_API_KEY"
 }
@@ -61,7 +61,7 @@ print(response.json())
 ```json
 {
   "task_id": "task_20251204052920_J8uNdq5z",
-  "task_name": "lyric_transcription",
+  "task_name": "lyric-transcription",
   "status": "success",
   "completed_at": "2025-12-04T05:30:15Z",
   "result_json": {
@@ -92,7 +92,7 @@ When no vocals are detected, the track is classified as instrumental:
 ```json
 {
   "task_id": "task_20251204052920_K9vPdq6a",
-  "task_name": "lyric_transcription",
+  "task_name": "lyric-transcription",
   "status": "success",
   "completed_at": "2025-12-04T05:30:15Z",
   "result_json": {
@@ -113,7 +113,7 @@ When no vocals are detected, the track is classified as instrumental:
 ```json
 {
   "task_id": "task_20251204052920_J8uNdq5z",
-  "task_name": "lyric_transcription",
+  "task_name": "lyric-transcription",
   "status": "failure",
   "completed_at": "2025-12-04T05:30:15Z",
   "result_json": {},
@@ -126,7 +126,7 @@ When no vocals are detected, the track is classified as instrumental:
 | Field | Type | Description |
 | --- | --- | --- |
 | `task_id` | string | Unique task identifier |
-| `task_name` | string | Always `lyric_transcription` |
+| `task_name` | string | Always `lyric-transcription` |
 | `status` | string | Task status: `pending`, `processing`, `success`, `failure` |
 | `completed_at` | string | ISO 8601 completion timestamp |
 | `result_json` | object | Transcription results |

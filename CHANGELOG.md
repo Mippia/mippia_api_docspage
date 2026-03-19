@@ -7,7 +7,7 @@ All notable changes to the MIPPIA API will be documented in this file.
 ## v1.1.1 (2026-02-09)
 
 ### Changed
-- **Pre-upload system**: Audio files are now uploaded separately via `POST /api/v1/music`, which returns a `musicId`. All analysis endpoints (`ai-detection`, `plagiarism`, `lyric_transcription`) now accept `musicId` instead of direct file upload.
+- **Pre-upload system**: Audio files are now uploaded separately via `POST /api/v1/music`, which returns a `musicId`. All analysis endpoints (`ai-detection`, `plagiarism`, `lyric-transcription`) now accept `musicId` instead of direct file upload.
 - **Upload Music API**: New endpoint `POST /api/v1/music` for uploading audio files before analysis.
 - **Updated Quick Start**: Added upload step to the getting started guide.
 
@@ -21,7 +21,7 @@ All notable changes to the MIPPIA API will be documented in this file.
 ## v1.1 (2026-02-03)
 
 ### Added
-- **Lyric Transcription API**: `POST /api/v1/lyric_transcription/{model}` — Extract lyrics from audio files using AI-powered speech recognition.
+- **Lyric Transcription API**: `POST /api/v1/lyric-transcription/{model}` — Extract lyrics from audio files using AI-powered speech recognition.
   - 18 languages supported (Korean, English, Chinese, Japanese, Spanish, French, German, Italian, Portuguese, Arabic, Hindi, Thai, Vietnamese, Indonesian, Turkish, Polish, Dutch, Russian)
   - Instrumental track detection
   - Vocal separation using Demucs
