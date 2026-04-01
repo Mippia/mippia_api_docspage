@@ -1,7 +1,7 @@
 project = 'MIPPIA API'
 copyright = '2025, MIPPIA'
 author = 'MIPPIA'
-release = '1.1.1'
+release = '1.1.2'
 
 extensions = [
     'myst_parser',
@@ -56,7 +56,7 @@ html_theme_options = {
     "announcement": """
         <div class="version-switcher">
             Version: <select onchange="window.location.href=this.value">
-                <option value="/" selected>1.1.1 (Latest)</option>
+                <option value="/" selected>1.1.2 (Latest)</option>
                 <option value="/v1.1/">1.1</option>
                 <option value="/v1.0/">1.0</option>
             </select>

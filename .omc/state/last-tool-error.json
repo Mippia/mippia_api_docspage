@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"ls /home/seonghyeon/Desktop/coding/Projects_refactoring/MIPPIA_api/mippia-platform-api-project/.github/workflows/ 2>/dev/null\",\"description\":\"Check for GitHub Actions workflows\"}",
+  "error": "Exit code 2",
+  "timestamp": "2026-04-01T12:55:08.644Z",
+  "retry_count": 1
+}

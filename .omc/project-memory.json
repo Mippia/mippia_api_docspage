@@ -1,0 +1,169 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775048068241,
+  "projectRoot": "/home/seonghyeon/Desktop/coding/Projects_refactoring/MIPPIA_api/mippia-platform-api-project/api_docs_project/docs",
+  "techStack": {
+    "languages": [
+      {
+        "name": "Python",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "requirements.txt"
+        ]
+      },
+      {
+        "name": "C/C++",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "Makefile"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "pip",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "make build",
+    "testCommand": "make test",
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "_build": {
+      "path": "_build",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1775048068237,
+      "keyFiles": []
+    },
+    "_static": {
+      "path": "_static",
+      "purpose": null,
+      "fileCount": 10,
+      "lastAccessed": 1775048068237,
+      "keyFiles": [
+        "CNAME",
+        "android-chrome-192x192.png",
+        "apple-touch-icon.png",
+        "custom.css",
+        "custom.js"
+      ]
+    },
+    "_templates": {
+      "path": "_templates",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1775048068239,
+      "keyFiles": [
+        "base.html"
+      ]
+    },
+    "api-reference": {
+      "path": "api-reference",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1775048068239,
+      "keyFiles": [
+        "ai-detection.md",
+        "dataset-management.md",
+        "lyric-plagiarism.md",
+        "lyric-transcription.md",
+        "plagiarism-detection.md"
+      ]
+    },
+    "docs-v1.0": {
+      "path": "docs-v1.0",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1775048068239,
+      "keyFiles": [
+        "Makefile",
+        "README.md",
+        "conf.py",
+        "index.md",
+        "make.bat"
+      ]
+    },
+    "docs-v1.1": {
+      "path": "docs-v1.1",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1775048068240,
+      "keyFiles": [
+        "Makefile",
+        "conf.py",
+        "index.md",
+        "requirements.txt"
+      ]
+    },
+    "getting-started": {
+      "path": "getting-started",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1775048068240,
+      "keyFiles": [
+        "authentication.md",
+        "introduction.md",
+        "quick-start.md"
+      ]
+    },
+    "guides": {
+      "path": "guides",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1775048068240,
+      "keyFiles": [
+        "webhooks.md"
+      ]
+    },
+    "resources": {
+      "path": "resources",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1775048068240,
+      "keyFiles": [
+        "pricing.md",
+        "rate-limits.md",
+        "support.md"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "conf.py",
+      "accessCount": 3,
+      "lastAccessed": 1775048223028,
+      "type": "file"
+    },
+    {
+      "path": "api-reference/ai-detection.md",
+      "accessCount": 2,
+      "lastAccessed": 1775048216183,
+      "type": "file"
+    },
+    {
+      "path": "docs-v1.1/api-reference/ai-detection.md",
+      "accessCount": 1,
+      "lastAccessed": 1775048156968,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
