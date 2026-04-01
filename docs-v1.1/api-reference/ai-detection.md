@@ -12,7 +12,7 @@ Detect AI-generated music.
 
 | Name | Type | Required | Description |
 | :--- | :--- | :--- | :--- |
-| `model_name` | string | Yes | Model to use: `lite`, `standard`, `pro` |
+| `model_name` | string | Yes | Model to use: `lite`, `standard`, `pro`, `pro-v2` |
 
 ### Request Body
 
@@ -29,6 +29,7 @@ Detect AI-generated music.
 | `lite` | 30-40 seconds | Single model, fast detection |
 | `standard` | 30-40 seconds | Model ensemble, balanced accuracy |
 | `pro` | ~1 minute | Model ensemble with detailed classification |
+| `pro-v2` | ~15 seconds | AI tracking with role-based detection |
 
 ---
 
@@ -255,6 +256,117 @@ Pro model includes additional classifiers for detailed analysis:
 }
 ```
 
+## Callback Response (Completed - Pro-V2)
+
+Pro-V2 model includes role-based AI detection with separate 2-label and 5-label classifiers:
+
+```json
+{
+  "task_id": "task_20251204052920_J8uNdq5z",
+  "status": "success",
+  "model_type": "pro-v2",
+  "completed_at": "2025-12-04T05:30:20Z",
+  "result": {
+    "audio_filename.mp3": {
+      "final_result": {
+        "prediction": "fake",
+        "confidence": 0.8234
+      },
+      "model_results": [
+        {
+          "segment_analysis": {
+            "prediction": ["real", "fake", "real", "fake"],
+            "confidence": [0.912, 0.834, 0.901, 0.823]
+          },
+          "overall_analysis": {
+            "prediction": "fake",
+            "confidence": 0.8775
+          },
+          "config": {
+            "model_id": "2label_stage1",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Real/Fake Binary Classification",
+            "num_classes": 2,
+            "labels": ["real", "fake"]
+          }
+        },
+        {
+          "overall_analysis": {
+            "prediction": "fake",
+            "confidence": 0.8654
+          },
+          "config": {
+            "model_id": "2label_stage2",
+            "analysis_focus": "Waveform & Melody Pattern",
+            "task": "Real/Fake Binary Classification",
+            "num_classes": 2,
+            "labels": ["real", "fake"]
+          }
+        },
+        {
+          "segment_analysis": {
+            "prediction": [["tracker", "engineer"], ["topliner"], ["real"], ["vocalist", "tracker"]],
+            "confidence": [
+              {"real": 0.05, "tracker": 0.62, "topliner": 0.12, "lyricist": 0.08, "vocalist": 0.08, "engineer": 0.65},
+              {"real": 0.10, "tracker": 0.15, "topliner": 0.78, "lyricist": 0.05, "vocalist": 0.12, "engineer": 0.10},
+              {"real": 0.92, "tracker": 0.03, "topliner": 0.02, "lyricist": 0.01, "vocalist": 0.02, "engineer": 0.03},
+              {"real": 0.08, "tracker": 0.71, "topliner": 0.05, "lyricist": 0.03, "vocalist": 0.56, "engineer": 0.12}
+            ]
+          },
+          "overall_analysis": {
+            "prediction": ["tracker", "topliner", "vocalist", "engineer"],
+            "confidence": {
+              "real": 0.06,
+              "tracker": 0.62,
+              "topliner": 0.48,
+              "lyricist": 0.04,
+              "vocalist": 0.45,
+              "engineer": 0.58
+            }
+          },
+          "config": {
+            "model_id": "5label_stage1",
+            "analysis_focus": "Role-based AI Detection",
+            "task": "Multi-role AI Detection",
+            "num_classes": 6,
+            "labels": ["real", "tracker", "topliner", "lyricist", "vocalist", "engineer"]
+          }
+        },
+        {
+          "segment_analysis": {
+            "prediction": [["tracker", "engineer"], ["topliner"], ["real"], ["vocalist", "tracker"]],
+            "confidence": [
+              {"real": 0.04, "tracker": 0.65, "topliner": 0.10, "lyricist": 0.07, "vocalist": 0.09, "engineer": 0.68},
+              {"real": 0.09, "tracker": 0.14, "topliner": 0.80, "lyricist": 0.04, "vocalist": 0.11, "engineer": 0.09},
+              {"real": 0.94, "tracker": 0.02, "topliner": 0.01, "lyricist": 0.01, "vocalist": 0.01, "engineer": 0.02},
+              {"real": 0.07, "tracker": 0.73, "topliner": 0.04, "lyricist": 0.02, "vocalist": 0.59, "engineer": 0.13}
+            ]
+          },
+          "overall_analysis": {
+            "prediction": ["tracker", "topliner", "vocalist", "engineer"],
+            "confidence": {
+              "real": 0.04,
+              "tracker": 0.64,
+              "topliner": 0.50,
+              "lyricist": 0.03,
+              "vocalist": 0.47,
+              "engineer": 0.60
+            }
+          },
+          "config": {
+            "model_id": "5label_stage2",
+            "analysis_focus": "Role-based AI Detection",
+            "task": "Multi-role AI Detection",
+            "num_classes": 6,
+            "labels": ["real", "tracker", "topliner", "lyricist", "vocalist", "engineer"]
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
 ## Result Fields
 
 | Field | Type | Description |
@@ -307,6 +419,7 @@ The result is an object where:
 | :--- | :--- |
 | Waveform & Melody Pattern | Analyzes audio waveform characteristics and melodic patterns |
 | Mixing & Audio Effects | Analyzes mixing techniques and audio effect signatures |
+| Role-based AI Detection | Analyzes AI involvement by musical role (tracking, toplining, lyrics, vocals, engineering) |
 
 ### Analysis Result Fields
 
@@ -326,6 +439,7 @@ The result is an object where:
 | Real/Fake Binary | `real`, `fake` |
 | 3-Class | `real`, `ai_cover`, `fake` |
 | Detailed Fake Source | `real`, `suno_v4`, `suno_v4_5`, `suno_v4_5_plus`, `suno_v5`, `other` |
+| Multi-role AI | `real`, `tracker`, `topliner`, `lyricist`, `vocalist`, `engineer` |
 
 ## Notes
 
@@ -334,3 +448,4 @@ The result is an object where:
 - **Segment Analysis**: Analyzes each segment of the audio independently to detect localized AI artifacts
 - **Overall Analysis**: Considers the entire song structure and aggregates segment results for final prediction
 - **Model Results**: Each element in the `model_results` array represents one model's analysis
+- **Pro-V2 Role Detection**: The 5-label models detect AI involvement by musical role. For segment-level analysis, prediction is an array of arrays where each segment contains detected roles (or `["real"]` if no AI detected). Confidence provides per-role probabilities for each segment. At the overall level, prediction lists all detected roles, and confidence aggregates role probabilities across segments.
