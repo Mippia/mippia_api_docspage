@@ -150,7 +150,7 @@ print(response.json())
   "result": {
     "is_duplicate": true,
     "matched_music_id": "6d516670-e81b-49b5-a1f6-465407f84830",
-    "matched_musicname": "v2인간극장 오프닝"
+    "matched_musicname": "Summer Breeze"
   },
   "completed_at": "2026-04-02T14:54:14.859289"
 }
