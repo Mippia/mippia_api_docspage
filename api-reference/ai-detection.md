@@ -435,7 +435,7 @@ For `pro-v2`: the result object contains `final_result` and `model_results` dire
 | 3-Class | `real`, `ai_cover`, `fake` |
 | Detailed Fake Source | `real`, `suno_v4`, `suno_v4_5`, `suno_v4_5_plus`, `suno_v5`, `other` |
 | Role-based AI | `real`, `composer`, `vocalist`, `engineer` |
-| AI Model Identification | `acestep`, `lyria-pro3`, `mureka`, `suno`, `udio` |
+| AI Model Identification | `real`, `acestep`, `lyria-pro3`, `mureka`, `suno`, `udio` |
 
 ## Notes
 
