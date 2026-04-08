@@ -258,7 +258,7 @@ Pro model includes additional classifiers for detailed analysis:
 
 ## Callback Response (Completed - Pro-V2)
 
-Pro-V2 model includes role-based AI detection with separate 2-label and 5-label classifiers:
+Pro-V2 model uses role-based AI detection (composer, vocalist, engineer) and AI model identification. Unlike other models, the `result` object contains `final_result` and `model_results` directly (no filename key wrapper).
 
 ```json
 {
@@ -267,102 +267,96 @@ Pro-V2 model includes role-based AI detection with separate 2-label and 5-label 
   "model_type": "pro-v2",
   "completed_at": "2025-12-04T05:30:20Z",
   "result": {
-    "audio_filename.mp3": {
-      "final_result": {
-        "prediction": "fake",
-        "confidence": 0.8234
-      },
-      "model_results": [
-        {
-          "segment_analysis": {
-            "prediction": ["real", "fake", "real", "fake"],
-            "confidence": [0.912, 0.834, 0.901, 0.823]
-          },
-          "overall_analysis": {
-            "prediction": "fake",
-            "confidence": 0.8775
-          },
-          "config": {
-            "model_id": "2label_stage1",
-            "analysis_focus": "Waveform & Melody Pattern",
-            "task": "Real/Fake Binary Classification",
-            "num_classes": 2,
-            "labels": ["real", "fake"]
-          }
+    "final_result": {
+      "prediction": "fake",
+      "confidence": 0.99
+    },
+    "model_results": [
+      {
+        "segment_analysis": {
+          "prediction": ["fake", "fake", "fake", "fake", "fake", "fake"],
+          "confidence": [0.9735, 0.9764, 0.9788, 0.97, 0.9848, 0.9775]
         },
-        {
-          "overall_analysis": {
-            "prediction": "fake",
-            "confidence": 0.8654
-          },
-          "config": {
-            "model_id": "2label_stage2",
-            "analysis_focus": "Waveform & Melody Pattern",
-            "task": "Real/Fake Binary Classification",
-            "num_classes": 2,
-            "labels": ["real", "fake"]
-          }
+        "overall_analysis": {
+          "prediction": "fake",
+          "confidence": 0.9768
         },
-        {
-          "segment_analysis": {
-            "prediction": [["tracker", "engineer"], ["topliner"], ["real"], ["vocalist", "tracker"]],
-            "confidence": [
-              {"real": 0.05, "tracker": 0.62, "topliner": 0.12, "lyricist": 0.08, "vocalist": 0.08, "engineer": 0.65},
-              {"real": 0.10, "tracker": 0.15, "topliner": 0.78, "lyricist": 0.05, "vocalist": 0.12, "engineer": 0.10},
-              {"real": 0.92, "tracker": 0.03, "topliner": 0.02, "lyricist": 0.01, "vocalist": 0.02, "engineer": 0.03},
-              {"real": 0.08, "tracker": 0.71, "topliner": 0.05, "lyricist": 0.03, "vocalist": 0.56, "engineer": 0.12}
-            ]
-          },
-          "overall_analysis": {
-            "prediction": ["tracker", "topliner", "vocalist", "engineer"],
-            "confidence": {
-              "real": 0.06,
-              "tracker": 0.62,
-              "topliner": 0.48,
-              "lyricist": 0.04,
-              "vocalist": 0.45,
-              "engineer": 0.58
-            }
-          },
-          "config": {
-            "model_id": "5label_stage1",
-            "analysis_focus": "Role-based AI Detection",
-            "task": "Multi-role AI Detection",
-            "num_classes": 6,
-            "labels": ["real", "tracker", "topliner", "lyricist", "vocalist", "engineer"]
-          }
-        },
-        {
-          "segment_analysis": {
-            "prediction": [["tracker", "engineer"], ["topliner"], ["real"], ["vocalist", "tracker"]],
-            "confidence": [
-              {"real": 0.04, "tracker": 0.65, "topliner": 0.10, "lyricist": 0.07, "vocalist": 0.09, "engineer": 0.68},
-              {"real": 0.09, "tracker": 0.14, "topliner": 0.80, "lyricist": 0.04, "vocalist": 0.11, "engineer": 0.09},
-              {"real": 0.94, "tracker": 0.02, "topliner": 0.01, "lyricist": 0.01, "vocalist": 0.01, "engineer": 0.02},
-              {"real": 0.07, "tracker": 0.73, "topliner": 0.04, "lyricist": 0.02, "vocalist": 0.59, "engineer": 0.13}
-            ]
-          },
-          "overall_analysis": {
-            "prediction": ["tracker", "topliner", "vocalist", "engineer"],
-            "confidence": {
-              "real": 0.04,
-              "tracker": 0.64,
-              "topliner": 0.50,
-              "lyricist": 0.03,
-              "vocalist": 0.47,
-              "engineer": 0.60
-            }
-          },
-          "config": {
-            "model_id": "5label_stage2",
-            "analysis_focus": "Role-based AI Detection",
-            "task": "Multi-role AI Detection",
-            "num_classes": 6,
-            "labels": ["real", "tracker", "topliner", "lyricist", "vocalist", "engineer"]
-          }
+        "config": {
+          "model_id": "2label_stage1",
+          "analysis_focus": "Waveform & Melody Pattern",
+          "task": "Real/Fake Binary Classification",
+          "num_classes": 2,
+          "labels": ["real", "fake"]
         }
-      ]
-    }
+      },
+      {
+        "overall_analysis": {
+          "prediction": "fake",
+          "confidence": 0.99
+        },
+        "config": {
+          "model_id": "2label_stage2",
+          "analysis_focus": "Waveform & Melody Pattern",
+          "task": "Real/Fake Binary Classification",
+          "num_classes": 2,
+          "labels": ["real", "fake"]
+        }
+      },
+      {
+        "segment_analysis": {
+          "prediction": [
+            ["composer", "vocalist", "engineer"],
+            ["composer", "vocalist", "engineer"],
+            ["composer", "vocalist", "engineer"],
+            ["real"],
+            ["composer", "vocalist", "engineer"],
+            ["real"]
+          ],
+          "confidence": [
+            {"composer": 0.99, "vocalist": 0.99, "engineer": 0.99},
+            {"composer": 0.99, "vocalist": 0.99, "engineer": 0.99},
+            {"composer": 0.99, "vocalist": 0.99, "engineer": 0.99},
+            {"composer": 0.01, "vocalist": 0.03, "engineer": 0.03},
+            {"composer": 0.99, "vocalist": 0.99, "engineer": 0.99},
+            {"composer": 0.01, "vocalist": 0.01, "engineer": 0.01}
+          ]
+        },
+        "overall_analysis": {
+          "prediction": ["composer", "vocalist", "engineer"],
+          "confidence": {
+            "composer": 0.99,
+            "vocalist": 0.99,
+            "engineer": 0.99
+          }
+        },
+        "config": {
+          "model_id": "agent_classifier",
+          "analysis_focus": "Role-based AI Detection",
+          "task": "Per-agent AI Classification",
+          "labels": ["composer", "vocalist", "engineer"]
+        }
+      },
+      {
+        "overall_analysis": {
+          "prediction": "suno",
+          "confidence": 0.99,
+          "all_probs": {
+            "acestep": 0.01,
+            "lyria-pro3": 0.01,
+            "mureka": 0.01,
+            "suno": 0.99,
+            "udio": 0.01
+          }
+        },
+        "config": {
+          "model_id": "fake_model_classifier",
+          "analysis_focus": "AI Model Identification",
+          "task": "Fake Model Classification",
+          "num_classes": 5,
+          "labels": ["acestep", "lyria-pro3", "mureka", "suno", "udio"]
+        }
+      }
+    ]
   }
 }
 ```
@@ -379,9 +373,9 @@ Pro-V2 model includes role-based AI detection with separate 2-label and 5-label 
 
 ### Result Structure
 
-The result is an object where:
-- **Key**: Audio filename
-- **Value**: Object containing `final_result` and `model_results`
+For `lite`, `standard`, `pro`: the result is an object where the **key** is the audio filename and the **value** contains `final_result` and `model_results`.
+
+For `pro-v2`: the result object contains `final_result` and `model_results` directly (no filename key).
 
 | Field | Type | Description |
 | :--- | :--- | :--- |
@@ -419,7 +413,8 @@ The result is an object where:
 | :--- | :--- |
 | Waveform & Melody Pattern | Analyzes audio waveform characteristics and melodic patterns |
 | Mixing & Audio Effects | Analyzes mixing techniques and audio effect signatures |
-| Role-based AI Detection | Analyzes AI involvement by musical role (tracking, toplining, lyrics, vocals, engineering) |
+| Role-based AI Detection | Analyzes AI involvement by musical role (composer, vocalist, engineer) |
+| AI Model Identification | Identifies which AI model was used to generate the audio |
 
 ### Analysis Result Fields
 
@@ -439,7 +434,8 @@ The result is an object where:
 | Real/Fake Binary | `real`, `fake` |
 | 3-Class | `real`, `ai_cover`, `fake` |
 | Detailed Fake Source | `real`, `suno_v4`, `suno_v4_5`, `suno_v4_5_plus`, `suno_v5`, `other` |
-| Multi-role AI | `real`, `tracker`, `topliner`, `lyricist`, `vocalist`, `engineer` |
+| Role-based AI | `real`, `composer`, `vocalist`, `engineer` |
+| AI Model Identification | `acestep`, `lyria-pro3`, `mureka`, `suno`, `udio` |
 
 ## Notes
 
@@ -448,4 +444,5 @@ The result is an object where:
 - **Segment Analysis**: Analyzes each segment of the audio independently to detect localized AI artifacts
 - **Overall Analysis**: Considers the entire song structure and aggregates segment results for final prediction
 - **Model Results**: Each element in the `model_results` array represents one model's analysis
-- **Pro-V2 Role Detection**: The 5-label models detect AI involvement by musical role. For segment-level analysis, prediction is an array of arrays where each segment contains detected roles (or `["real"]` if no AI detected). Confidence provides per-role probabilities for each segment. At the overall level, prediction lists all detected roles, and confidence aggregates role probabilities across segments.
+- **Pro-V2 Role Detection**: The agent classifier detects AI involvement by musical role (composer, vocalist, engineer). For segment-level analysis, prediction is an array of arrays where each segment contains detected roles (or `["real"]` if no AI detected). Confidence provides per-role probabilities for each segment.
+- **Pro-V2 AI Model Identification**: The fake model classifier identifies which AI model likely generated the audio (acestep, lyria-pro3, mureka, suno, udio). Probabilities are scaled by the overall fake confidence — if the track is predicted as real, all model probabilities will be near zero.
