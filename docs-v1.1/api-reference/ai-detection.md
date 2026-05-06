@@ -12,7 +12,7 @@ Detect AI-generated music.
 
 | Name | Type | Required | Description |
 | :--- | :--- | :--- | :--- |
-| `model_name` | string | Yes | Model to use: `lite`, `standard`, `pro`, `pro-v2` |
+| `model_name` | string | Yes | Model to use: `lite`, `standard`, `pro`, `pro-v2` (**Enterprise only**) |
 
 ### Request Body
 
@@ -29,7 +29,7 @@ Detect AI-generated music.
 | `lite` | 30-40 seconds | Single model, fast detection |
 | `standard` | 30-40 seconds | Model ensemble, balanced accuracy |
 | `pro` | ~1 minute | Model ensemble with detailed classification |
-| `pro-v2` | ~15 seconds | AI tracking with role-based detection |
+| `pro-v2` | ~15 seconds | AI tracking with role-based detection (**Enterprise only**) |
 
 ---
 
@@ -257,6 +257,8 @@ Pro model includes additional classifiers for detailed analysis:
 ```
 
 ## Callback Response (Completed - Pro-V2)
+
+> **Note:** Pro-V2 is available **only on Enterprise plans**. Contact sales to enable access.
 
 Pro-V2 model includes role-based AI detection with separate 2-label and 5-label classifiers:
 
