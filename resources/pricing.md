@@ -23,15 +23,11 @@ Get started with our free tier:
 
 ### Standard - $10/month
 
-Recommended for 100+ requests/month
-
 - $20 monthly available credits
 - Available access to AI Detection-Pro
 - Rate limit : 100 request/min
 
 ### Premium CUD - $399/month
-
-Recommended for 1,000+ requests/month
 
 - $599 monthly available credits
 - Available access to AI Detection-Pro
@@ -39,8 +35,6 @@ Recommended for 1,000+ requests/month
 - Rate limit : 100 request/min
 
 ### Business - Custom
-
-Recommended for 10,000+ requests/month
 
 - Custom volume pricing
 - Dedicated support and SLA guarantees
