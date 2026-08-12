@@ -17,8 +17,8 @@ Detect AI-generated music.
 ### Request Body
 
 | Field | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `file` | binary | Yes | Audio file to analyze (mp3, wav, flac, m4a, aac, ogg) |
+|:------|:-----|:---------|:------------|
+| `musicId` | string | Yes | Unique music identifier, uploaded via `[POST] /api/v1/music` endpoint |
 
 ---
 
