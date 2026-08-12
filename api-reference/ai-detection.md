@@ -40,8 +40,9 @@ Detect AI-generated music.
 ```bash
 curl https://platform.mippia.com/api/v1/ai-detection/standard \
   -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
   -X POST \
-  -F "file=@/path/to/audio.mp3"
+  -d '{"musicId": "YOUR_MUSIC_ID"}'
 ```
 
 ### Python
@@ -53,11 +54,11 @@ url = "https://platform.mippia.com/api/v1/ai-detection/standard"
 headers = {
     "Authorization": "Bearer YOUR_API_KEY"
 }
-files = {
-    "file": open("/path/to/audio.mp3", "rb")
+data = {
+    "musicId": "YOUR_MUSIC_ID"
 }
 
-response = requests.post(url, headers=headers, files=files)
+response = requests.post(url, headers=headers, json=data)
 print(response.json())
 ```
 
