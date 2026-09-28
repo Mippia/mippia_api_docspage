@@ -233,7 +233,7 @@ Each category contains an array of match objects.
 | `time_start` | float | Start time in seconds |
 | `time_end` | float | End time in seconds |
 | `key` | string | Musical key (e.g., "G major") |
-| `chords` | array | 16 chords in shorthand notation (e.g., "C:maj", "E:min", "N" for none) |
+| `chords` | array | Chord progression of the segment in shorthand notation, up to 16 entries (e.g., "C:maj", "E:min", "N" for none). Shorter segments may have fewer. |
 
 ### Scores
 
