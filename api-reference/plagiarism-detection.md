@@ -74,7 +74,7 @@ carry a non-null `result`; ignore it until `status` becomes `success`.
 ```json
 {
   "task_id": "task_20251204052920_J8uNdq5z",
-  "task_type": "plagiarism_detection",
+  "task_type": "PLAGIARISM_DETECTION",
   "status": "processing",
   "result": null,
   "started_at": "2025-12-04T05:29:25Z"
@@ -93,7 +93,7 @@ carry a non-null `result`; ignore it until `status` becomes `success`.
 ```json
 {
   "task_id": "task_20251204052920_J8uNdq5z",
-  "task_type": "plagiarism_detection",
+  "task_type": "PLAGIARISM_DETECTION",
   "status": "success",
   "completed_at": "2025-12-04T05:30:45Z",
   "result": {
@@ -192,7 +192,7 @@ carry a non-null `result`; ignore it until `status` becomes `success`.
 | Field | Type | Description |
 |:------|:-----|:------------|
 | `task_id` | string | Unique task identifier |
-| `task_type` | string | Task type: `plagiarism_detection` |
+| `task_type` | string | Task type: `PLAGIARISM_DETECTION` |
 | `status` | string | Task status: `pending`, `processing`, `success`, `failure` |
 | `completed_at` | string | ISO 8601 completion timestamp |
 | `result` | object | Detection results: four segment-level categories plus `total_scores` |

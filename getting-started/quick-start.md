@@ -92,25 +92,50 @@ curl https://platform.mippia.com/api/v1/task/result/task_20251210021802_AjHwAeUR
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
+The polling response has the same envelope as the webhook payload: task metadata at the
+top level and the worker output under `result`. Until the task starts, `result` is `null`.
+
 **Pending response:**
 
 ```json
 {
-  "task_id": "task_20251210021802_AjHwAeUR",
-  "status": "pending"
+  "taskResultId": 34,
+  "title": "track",
+  "aiModelName": "standard",
+  "url": "/api/v1/ai-detection/standard",
+  "taskId": "task_20251210021802_AjHwAeUR",
+  "requestedAt": "2025-12-10T02:18:01.327867Z",
+  "completedAt": null,
+  "status": "pending",
+  "result": null,
+  "ppc": { "final": 0.0 }
 }
 ```
 
-**Completed response:**
+**Completed response:** the worker output sits under `result`, so the scores are at
+`result.result` (for AI detection keyed by filename; for plagiarism see the
+`signature`/`vocal`/`inst`/`topline`/`total_scores` keys).
 
 ```json
 {
-  "task_id": "task_20251210021802_AjHwAeUR",
+  "taskResultId": 34,
+  "title": "track",
+  "aiModelName": "standard",
+  "url": "/api/v1/ai-detection/standard",
+  "taskId": "task_20251210021802_AjHwAeUR",
+  "requestedAt": "2025-12-10T02:18:01.327867Z",
+  "completedAt": "2025-12-10T02:18:16.102331Z",
   "status": "success",
-  "model_type": "standard",
-  "completed_at": "2025-12-04T05:30:15Z",
+  "ppc": { "final": 0.0 },
   "result": {
-    "track.mp3": {
+    "task_id": "task_20251210021802_AjHwAeUR",
+    "status": "success",
+    "status_code": 200,
+    "error": null,
+    "model_type": "standard",
+    "completed_at": "2025-12-10T02:18:15Z",
+    "result": {
+      "track.mp3": {
       "model_0": { 
         "overall_analysis": { 
           "prediction": "real", 
@@ -125,11 +150,14 @@ curl https://platform.mippia.com/api/v1/task/result/task_20251210021802_AjHwAeUR
         } 
       }
     }
+    }
   }
 }
 ```
 
-> **Tip:** We recommend polling every 5-10 seconds. Processing typically takes 30-60 seconds depending on track length.
+> **Tip:** We recommend polling every 5-10 seconds. AI detection typically completes in
+> 15-60 seconds; plagiarism detection runs a full library comparison and typically takes
+> 5-10 minutes. Wait for the top-level `status` to become `success`.
 
 
 ## Next Steps
