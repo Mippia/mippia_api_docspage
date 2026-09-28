@@ -41,7 +41,7 @@ You'll receive a task ID:
 
 ```json
 {
-  "taskId": "task_20251210021802_AjHwAeUR",
+  "taskId": "task_20251210021802_AjHwAeUR"
 }
 ```
 
