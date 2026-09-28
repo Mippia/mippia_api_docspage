@@ -50,12 +50,12 @@ print(response.json())
 | :--- |:---------|:-----------------------------|
 | `musicId` | string   | Unique music identifier      |
 | `title` | string   | filename                     |
-| `created_at` | string | ISO 8601 timestamp of upload |
+| `createdAt` | string | ISO 8601 timestamp of upload |
 
 ```json
 {
   "musicId": "MUSIC-UUID",
   "title": "audio",
-  "created_at": "2025-12-04T05:29:20Z"
+  "createdAt": "2025-12-04T05:29:20Z"
 }
 ```
