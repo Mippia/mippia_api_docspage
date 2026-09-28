@@ -136,7 +136,42 @@ print(response.json())
     ],
     "vocal": [...],
     "inst": [...],
-    "topline": [...]
+    "topline": [...],
+    "total_scores": {
+      "overall_score": 56.247343,
+      "matched_title": "Similar Existing Song",
+      "matched_category": "topline",
+      "by_category": {
+        "signature": [
+          {
+            "rank": 1,
+            "title": "Similar Existing Song",
+            "link": "https://www.youtube.com/watch?v=example",
+            "scores": {
+              "overall_score": 54.684332,
+              "rhythm": 54.671,
+              "instruments": {
+                "vocal":   { "overall_metric": 55.68, "pitch_score": 77.33, "correlation": 54.67, "ratio": 96.38 },
+                "inst":    { "overall_metric": 0.0,   "pitch_score": 43.63, "correlation": 8.81,  "ratio": 88.38 },
+                "topline": { "overall_metric": 67.15, "pitch_score": 98.67, "correlation": 40.93, "ratio": 89.35 },
+                "bass":    { "overall_metric": 0.0,   "pitch_score": 0.0,   "correlation": 0.0,   "ratio": 0.0 }
+              },
+              "chord": {
+                "roman_numeral_similarity": 17.7,
+                "quality_similarity": 17.7,
+                "alteration_similarity": 17.7,
+                "bass_similarity": 17.7,
+                "overall_similarity": 17.7,
+                "sequence_length": 17.7
+              }
+            }
+          }
+        ],
+        "vocal": [...],
+        "inst": [...],
+        "topline": [...]
+      }
+    }
   }
 }
 ```
@@ -149,11 +184,15 @@ print(response.json())
 | `task_type` | string | Task type: `plagiarism_detection` |
 | `status` | string | Task status: `pending`, `processing`, `success`, `failure` |
 | `completed_at` | string | ISO 8601 completion timestamp |
-| `result` | object | Detection results grouped by category |
+| `result` | object | Detection results: four segment-level categories plus `total_scores` |
 
 ### Result Categories
 
-Results are grouped into four categories based on what aspect of the music matched:
+`result` contains four segment-level categories and one song-level summary (`total_scores`).
+The segment categories show *which parts* matched; `total_scores` gives the *overall
+percentage per reference track*, identical to the number shown on the MIPPIA website.
+
+Segment categories, based on what aspect of the music matched:
 
 | Category | Description |
 |:---------|:------------|
@@ -203,6 +242,53 @@ Additionally:
 |:------|:-----|:------------|
 | `chord` | float | Chord progression similarity (0.0 - 1.0) |
 
+### Total Scores (`total_scores`)
+
+`total_scores` is the song-level summary. It is computed by the same function the
+MIPPIA website uses, so the numbers match the website exactly. Use `overall_score`
+when you need a single percentage per track (for example in a review dashboard).
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `overall_score` | float | Overall similarity percentage (0 - 99). Same value shown on the MIPPIA website. Equals the highest reference-track score across all categories. |
+| `matched_title` | string | Reference track that produced `overall_score` |
+| `matched_category` | string | Category of that match: `signature`, `vocal`, `inst`, or `topline` |
+| `by_category` | object | Per-category arrays of reference tracks (up to 10 each), sorted by `scores.overall_score` descending |
+
+#### Reference Track Object (`by_category.<category>[]`)
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `rank` | integer | Rank within the category (1 = most similar) |
+| `title` | string | Reference track title |
+| `link` | string | Reference track URL (may be null) |
+| `scores` | object | Song-level score breakdown (see below) |
+
+#### Song-level Scores (`scores`)
+
+All values in this object are percentages (0 - 99).
+
+| Field | Type | Description |
+|:------|:-----|:------------|
+| `overall_score` | float | Overall similarity for this reference track |
+| `rhythm` | float | Rhythmic similarity |
+| `instruments` | object | Per-instrument breakdown for `vocal`, `inst`, `topline`, `bass` |
+| `instruments.<inst>.overall_metric` | float | Final similarity for that instrument |
+| `instruments.<inst>.pitch_score` | float | Pitch similarity |
+| `instruments.<inst>.correlation` | float | Rhythmic pattern similarity |
+| `instruments.<inst>.ratio` | float | Segment matching ratio |
+| `chord` | object | Chord-progression similarity: `roman_numeral_similarity`, `quality_similarity`, `alteration_similarity`, `bass_similarity`, `overall_similarity`, `sequence_length` |
+
+#### Recommended thresholds
+
+| `overall_score` | Recommendation |
+|:----------------|:---------------|
+| Above 50 | Needs review |
+| Above 60 | High risk |
+
+These are guidelines. Choose the values that fit your own review workflow.
+
 ## Notes
 
-- **Segment-based**: Results show which specific parts of songs are similar. API returns simplified results compared to the MIPPIA website.
+- **Segment-based**: The `signature`, `vocal`, `inst`, and `topline` arrays show which specific parts of songs are similar.
+- **Song-level**: `total_scores` provides the overall percentage per reference track, matching the MIPPIA website. The segment-level fields alone cannot reproduce it, because the website applies internal normalization before aggregation.

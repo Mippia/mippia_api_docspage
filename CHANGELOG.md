@@ -4,6 +4,14 @@ All notable changes to the MIPPIA API will be documented in this file.
 
 ---
 
+## v1.1.2 (2026-09-28)
+
+### Added
+- **Plagiarism `total_scores`**: The plagiarism result now includes a song-level summary, `result.total_scores`, with the same overall similarity percentage shown on the MIPPIA website (`overall_score`), the matched reference track, and a per-category breakdown (`by_category`) with instrument, chord, and rhythm scores per reference track.
+- Existing segment-level fields (`signature`, `vocal`, `inst`, `topline`) are unchanged. No client changes are required.
+
+---
+
 ## v1.1.1 (2026-02-09)
 
 ### Changed
