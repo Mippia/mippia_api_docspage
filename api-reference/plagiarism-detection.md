@@ -67,6 +67,11 @@ print(response.json())
 
 ## Callback Response (Processing)
 
+Plagiarism detection runs in two stages: audio analysis (about 1-2 minutes) and
+library comparison (several more minutes, depending on track length). While the
+task is still running you receive `status: "processing"`. Intermediate payloads may
+carry a non-null `result`; ignore it until `status` becomes `success`.
+
 ```json
 {
   "task_id": "task_20251204052920_J8uNdq5z",
@@ -76,6 +81,13 @@ print(response.json())
   "started_at": "2025-12-04T05:29:25Z"
 }
 ```
+
+> **Polling note:** `GET /api/v1/task/result/{taskId}` wraps the callback payload
+> below under a top-level `result` key together with task metadata
+> (`taskResultId`, `title`, `requestedAt`, `completedAt`, `ppc`, ...). When polling,
+> the scores are therefore at `result.result.total_scores` and
+> `result.result.signature` etc. Wait until the top-level `status` is `success`;
+> a full plagiarism check typically takes 5-10 minutes.
 
 ## Callback Response (Completed)
 
