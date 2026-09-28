@@ -64,13 +64,12 @@ print(response.json())
 
 ## Response (Initial)
 
+The request is accepted with **HTTP 202** and returns the task identifier only.
+Use it to poll `GET /api/v1/task/result/{taskId}` or wait for the callback.
+
 ```json
 {
-  "task_id": "task_20251204052920_J8uNdq5z",
-  "status": "pending",
-  "filepath": "uploads/task_20251204052920_J8uNdq5z.mp3",
-  "model": "standard",
-  "created_at": "2025-12-04T05:29:20Z"
+  "taskId": "task_20251204052920_J8uNdq5z"
 }
 ```
 
